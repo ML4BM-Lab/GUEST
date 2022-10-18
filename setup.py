@@ -5,18 +5,18 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setuptools.setup(
     name='',
-    author='Tom Chen',
+    author='Jesús de la Fuente Cedeño',
     author_email='jdlfuentec@gmail.com',
     description='Graph Embedding Helper',
     keywords='graph embedding, pypi, package',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/tomchen/example_pypi_package',
+    url='https://github.com/ubioinformat/graph_embedding_py',
     project_urls={
-        'Documentation': 'https://github.com/tomchen/example_pypi_package',
+        'Documentation': 'https://github.com/ubioinformat/graph_embedding_py',
         'Bug Reports':
-        'https://github.com/tomchen/example_pypi_package/issues',
-        'Source Code': 'https://github.com/tomchen/example_pypi_package',
+        'https://github.com/ubioinformat/graph_embedding_py/issues',
+        'Source Code': 'https://github.com/ubioinformat/graph_embedding_py',
         # 'Funding': '',
         # 'Say Thanks!': '',
     },
