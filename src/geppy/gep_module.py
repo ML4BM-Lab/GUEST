@@ -6,9 +6,9 @@ import math as m
 import os
 import pandas as pd
 
-from gep_rmsd_module import generate_RMSDdict, filter_DTIs, get_positives_for_final_fold
-from gep_helper_module import Kfold_from_lists, names_from_edges
-from gep_splits_module import generate_splits
+from geppy.gep_rmsd_module import generate_RMSDdict, filter_DTIs, get_positives_for_final_fold
+from geppy.gep_helper_module import Kfold_from_lists, names_from_edges
+from geppy.gep_splits_module import generate_splits
 
 class GEH:
 

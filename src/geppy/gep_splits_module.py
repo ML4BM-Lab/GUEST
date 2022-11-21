@@ -1,9 +1,9 @@
 import random as r
 from collections import defaultdict as dd
 import functools as f
-from gep_optimizer_module import optimize_folds
-from gep_reorder_module import Sd_St_reorder, Sp_reorder
-from gep_interactions_module import get_interactions_dict
+from geppy.gep_optimizer_module import optimize_folds
+from geppy.gep_reorder_module import Sd_St_reorder, Sp_reorder
+from geppy.gep_interactions_module import get_interactions_dict
 
 def generate_splits(DTIs, mode, foldnum, subsampling, n_seeds, only_distribution, 
                     negative_to_positive_ratio, negative_final_fold,
