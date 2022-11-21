@@ -1,5 +1,4 @@
 import random as r
-import sklearn
 from sklearn.model_selection import train_test_split
 from collections import Counter 
 import itertools
