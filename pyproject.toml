@@ -1,0 +1,36 @@
+# pyproject.toml
+
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geppy"
+version = "1.0.0"
+description = "Graph Embedding Helper"
+readme = "README.md"
+authors = [{ name = "Jesús de la Fuente Cedeño", email = "jdlfuentec@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3 :: Only',
+    'Operating System :: OS Independent',
+]
+keywords = ["graph embedding", "pypi", "drug repurposing"]
+dependencies = [
+    "pandas",
+    "sklearn",
+]
+requires-python = ">=3"
+
+[project.optional-dependencies]
+dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
+
+[project.urls]
+Homepage = "https://github.com/ubioinformat/graph_embedding_py"
