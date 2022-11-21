@@ -26,6 +26,11 @@ keywords = ["graph embedding", "pypi", "drug repurposing"]
 dependencies = [
     "pandas",
     "scikit-learn",
+    "tqdm",
+    "functools",
+    "collections",
+    "random",
+    "itertools"
 ]
 requires-python = ">=3"
 
