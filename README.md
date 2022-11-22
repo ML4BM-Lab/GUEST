@@ -33,4 +33,9 @@ a extra dictionary (prot_info_dict) with info will be returned ...(FINISH)
     #Retrieve results
     seed_cv_list  = GEHobj.retrieve_results() #(Default)
     seed_cv_list, prot_info_dict = GEHobj.retrieve_results() #(RMSD applied)
+
+You can verify that your splits fulfill the mode requirements after they have been generated.
+
+    #Test your splits
+    GEHobj.test_splits()
     
