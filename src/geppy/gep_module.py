@@ -168,20 +168,3 @@ class GEH:
         else:
 
             return self.seed_cv_list
-
-
-
-# fpath = os.path.join(os.getcwd(), './../../../Input4Models/DB', 'Data', 'BIOSNAP', 'ChG-Miner_miner-chem-gene', 'ChG-Miner_miner-chem-gene.tsv')
-# #fpath = os.path.join(os.getcwd(), './../../../Input4Models/DB', 'Data', 'Yamanashi_et_al_GoldStandard','NR','interactions','nr_admat_dgc_mat_2_line.txt')
-# DTIs = pd.read_csv(fpath, sep='\t') ## MAKE SURE THE HEADER OPTION IS ON/OFF DEPENDING ON THE DATASET!
-# DTIs.columns = ['Drug', 'Protein']
-# GEHobj = GEH(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
-
-# ##Apply RMSD
-# GEHobj.apply_RMSD(fpath = '/mnt/md0/data/jfuente/DTI/Input4Models/Docking/Results/RMSD_full_matrix.pkl')
-
-# ##Generate splits
-# GEHobj.generate_splits_cv()
-
-# ##Retrieve results
-# seed_cv_list, prot_info_dict = GEHobj.retrieve_results()
