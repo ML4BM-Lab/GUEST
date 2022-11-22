@@ -30,6 +30,9 @@ def generate_splits(DTIs, mode, foldnum, subsampling, n_seeds, only_distribution
     r.seed(0)
     seeds = [r.randint(1,10000) for _ in range(n_seeds)]
 
+    #init cv_distributions list
+    cv_distributions = []
+
     print('Performing 10-CV fold for each seed')
 
     for seed in seeds:
@@ -68,7 +71,7 @@ def generate_splits(DTIs, mode, foldnum, subsampling, n_seeds, only_distribution
             for interaction in pos_neg_interactions:
                 pos_neg_interactions_dd[interaction[0]].append(interaction)
 
-            cv_distribution = optimize_folds(cv_distribution, pos_neg_interactions_dd)
+            cv_distribution = optimize_folds(cv_distribution, pos_neg_interactions_dd, foldnum)
 
             if subsampling:
                 cv_distribution = Sd_St_reorder(cv_distribution, mode= 'Sd', foldnum=foldnum)
@@ -80,14 +83,18 @@ def generate_splits(DTIs, mode, foldnum, subsampling, n_seeds, only_distribution
             for interaction in pos_neg_interactions:
                 pos_neg_interactions_dd[interaction[1]].append(interaction)
 
-            cv_distribution = optimize_folds(cv_distribution, pos_neg_interactions_dd)
+            cv_distribution = optimize_folds(cv_distribution, pos_neg_interactions_dd, foldnum=foldnum)
 
             if subsampling:
                 cv_distribution = Sd_St_reorder(cv_distribution, mode = 'St', foldnum=foldnum)
 
+        cv_distributions.append(cv_distribution)
+
         if only_distribution:
             print("Only CV distribution has been generated!")
-            return cv_distribution, Drug_inv_dd, Prot_inv_dd
+            return cv_distributions, Drug_inv_dd, Prot_inv_dd
 
-    return cv_distribution, pos_neg_interactions, Drug_inv_dd, Prot_inv_dd, Drug_L, Prot_L
+        
+
+    return cv_distributions, pos_neg_interactions, Drug_inv_dd, Prot_inv_dd, Drug_L, Prot_L
     

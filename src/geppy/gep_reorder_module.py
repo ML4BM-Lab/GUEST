@@ -81,7 +81,7 @@ def Sd_St_reorder(cv_distribution, mode, foldnum):
         elif mode== 'St':
             return crucial_drugs, non_crucial_drugs, crucial_prots, non_crucial_prots, 
 
-    def manage_cruciality(cvdist, crucial_prots, non_crucial_prots, crucial_drugs):
+    def manage_cruciality(cvdist, crucial_prots, non_crucial_prots, crucial_drugs, mode):
 
         def find_crucial(elem, mode = 1):
             for i,fold in enumerate(cvdist):
@@ -92,7 +92,7 @@ def Sd_St_reorder(cv_distribution, mode, foldnum):
             print("ERROR: NOT FOUND")
             raise Exception
 
-        def double_dti(foldi1, dti1, dti2, cvdist, mode = 'Sd'):
+        def double_dti(foldi1, dti1, dti2, cvdist):
 
             #get indexes
             ind1 = cvdist[foldi1].index(dti1)
@@ -156,7 +156,7 @@ def Sd_St_reorder(cv_distribution, mode, foldnum):
 
                                 cvdist = double_dti(foldi1 = foldi, 
                                                     dti1 = dti, dti2 = crucial_dti, 
-                                                    cvdist = cvdist, mode = mode)
+                                                    cvdist = cvdist)
 
                                 #print(f"Crucial drug {crucial_prot} doubled")
                                 swap_done = True

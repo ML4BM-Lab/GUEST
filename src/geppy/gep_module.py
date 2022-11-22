@@ -38,7 +38,6 @@ class GEH:
 
         #init folds to store seed results
         self.seed_cv_list = []
-        self.cv_list = []
 
         #RMSD trigger
         self.RMSD_threshold = None
@@ -49,7 +48,6 @@ class GEH:
 
     def apply_RMSD(self, RMSD_threshold = 6, include_diagonal_RMSD = False, fpath = ""):
 
-        
         #Assign rmsd variables
         self.RMSD_enable = True
         self.RMSD_threshold = RMSD_threshold
@@ -72,14 +70,14 @@ class GEH:
         self.foldnum = m.ceil(1/test_ratio)
 
         #Generate splits
-        self.cv_distribution,  self.pos_neg_interactions , self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L  = generate_splits(
+        self.cv_distributions,  self.pos_neg_interactions , self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L  = generate_splits(
                                                                                                                                             self.DTIs, self.mode, self.foldnum, self.subsampling, 
                                                                                                                                             self.n_seeds, self.only_distribution,
                                                                                                                                             self.negative_to_positive_ratio, self.negative_final_fold,
                                                                                                                                             self.RMSD_enable, self.RMSD_threshold, self.RMSD_dict, self.include_diagonal_RMSD)
 
         #Assign cv_distribution
-        test_df = self.cv_distribution[0]
+        test_df = self.cv_distributions[0]
         df_train, df_val = train_test_split(list(itertools.chain.from_iterable(self.cv_distribution[1:])), 
                                             test_size = validation_ratio/(train_ratio + validation_ratio),
                                             random_state = None, shuffle = False )
@@ -107,40 +105,44 @@ class GEH:
 
         
         #Generate splits
-        self.cv_distribution, self.pos_neg_interactions, self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L = generate_splits(
+        self.cv_distributions, self.pos_neg_interactions, self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L = generate_splits(
                                                                                                                                         self.DTIs, self.mode, self.foldnum, self.subsampling, 
                                                                                                                                         self.n_seeds, self.only_distribution,
                                                                                                                                         self.negative_to_positive_ratio, self.negative_final_fold, 
                                                                                                                                         self.RMSD_enable, self.RMSD_threshold, self.RMSD_dict, self.include_diagonal_RMSD)
 
+        for cv_distribution in self.cv_distributions:
 
-        for train_edges, test_edges in Kfold_from_lists(self.cv_distribution):
+            #init the cv list
+            cv_list = []
 
-            if names:
+            for train_edges, test_edges in Kfold_from_lists(cv_distribution):
 
-                #--positives--
-                train_edges_pos, test_edges_pos = train_edges[train_edges[:,2] == 1,:-1], test_edges[test_edges[:,2] == 1,:-1]
-                
-                ##create names matrix from edges list
-                names_train_pos, names_test_pos = names_from_edges(train_edges_pos, test_edges_pos, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
+                if names:
 
-                #--negatives--
-                train_edges_neg, test_edges_neg = train_edges[train_edges[:,2] == 0,:-1], test_edges[test_edges[:,2] == 0,:-1]
-                
-                ##create names matrix from edges list
-                names_train_neg, names_test_neg = names_from_edges(train_edges_neg,test_edges_neg, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
+                    #--positives--
+                    train_edges_pos, test_edges_pos = train_edges[train_edges[:,2] == 1,:-1], test_edges[test_edges[:,2] == 1,:-1]
+                    
+                    ##create names matrix from edges list
+                    names_train_pos, names_test_pos = names_from_edges(train_edges_pos, test_edges_pos, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
 
-                #print(f"Train pos {len(names_train_pos)}, Train neg {len(names_train_neg)}, Test pos {len(names_test_pos)}, Test neg {len(names_test_neg)}")
+                    #--negatives--
+                    train_edges_neg, test_edges_neg = train_edges[train_edges[:,2] == 0,:-1], test_edges[test_edges[:,2] == 0,:-1]
+                    
+                    ##create names matrix from edges list
+                    names_train_neg, names_test_neg = names_from_edges(train_edges_neg,test_edges_neg, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
 
-                #add each fold
-                self.cv_list.append((names_train_pos,names_train_neg,names_test_pos,names_test_neg))
+                    #print(f"Train pos {len(names_train_pos)}, Train neg {len(names_train_neg)}, Test pos {len(names_test_pos)}, Test neg {len(names_test_neg)}")
 
-            else:
+                    #add each fold
+                    cv_list.append((names_train_pos,names_train_neg,names_test_pos,names_test_neg))
 
-                self.cv_list.append((train_edges,test_edges))
+                else:
 
-        #add each group of folds for each seed
-        self.seed_cv_list.append(self.cv_list)
+                    cv_list.append((train_edges,test_edges))
+
+            #add each group of folds for each seed
+            self.seed_cv_list.append(cv_list)
        
     def retrieve_results(self):
 
