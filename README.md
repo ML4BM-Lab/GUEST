@@ -31,4 +31,6 @@ Finally, retrieve the results. If RMSD option has been applied,
 a extra dictionary (prot_info_dict) with info will be returned ...(FINISH)
 
     #Retrieve results
-    seed_cv_list, prot_info_dict = GEHobj.retrieve_results()
+    seed_cv_list  = GEHobj.retrieve_results() #(Default)
+    seed_cv_list, prot_info_dict = GEHobj.retrieve_results() #(RMSD applied)
+    
