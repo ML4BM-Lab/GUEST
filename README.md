@@ -1,7 +1,7 @@
 # Graph Embedding Helper Package
 
 ## Description
-This a package for Graph Embedding prediction tasks. It includes multiple functionalities that will ease the development of drug repurposing models. This is included as a part of the Graph Embedding Review published under the name of "Towards a more inductive world".
+This is a package for Graph Embedding prediction tasks. It includes multiple functionalities that will ease the development of drug repurposing models. This is included as a part of the Graph Embedding Review published under the name of "Towards a more inductive world".
 
 ## Tutorial
 In order to use the package, you can go through the following steps:
