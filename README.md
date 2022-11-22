@@ -16,7 +16,7 @@ you want the dataset to fulfill, subsampling options, number of seeds, number of
 
     GEHobj = GEH(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
 
-You can apply a certain matrix for ... (DESCRIBE)
+Optionally, you can apply a certain matrix for ... (DESCRIBE)
 
     #Apply RMSD
     GEHobj.apply_RMSD(fpath = '/mnt/md0/data/jfuente/DTI/Input4Models/Docking/Results/RMSD_full_matrix.pkl')
