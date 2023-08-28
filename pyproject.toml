@@ -5,9 +5,9 @@ requires      = ["setuptools>=39.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "geppy"
+name = "GUEST"
 version = "1.0.0"
-description = "Graph Embedding Helper"
+description = "Graph Universal Embedding Splitting Tool"
 readme = "README.md"
 authors = [{ name = "Jesús de la Fuente Cedeño", email = "jdlfuentec@gmail.com" }]
 license = { file = "LICENSE" }

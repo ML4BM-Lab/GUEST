@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: geppy
+Version: 1.0.0
+Summary: Graph Embedding Helper
+Author-email: Jesús de la Fuente Cedeño <jdlfuentec@gmail.com>
+License: MIT License
+        
+        Copyright (c) [2022] [ubioinformat]
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/ubioinformat/graph_embedding_py
+Keywords: graph embedding,pypi,drug repurposing
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE
+
+# Graph Embedding Helper Package
+
+## Description
+This is a package for Graph Embedding prediction tasks. It includes multiple functionalities that will ease the development of drug repurposing models. This is included as a part of the Graph Embedding Review published under the name of "Towards a more inductive world".
+
+## Tutorial
+In order to use the package, you can go through the following steps:
+First, load your DTI network. It must a 2 column file, with
+Drugs in the first column and Proteins in the second column. An example is located in the test folder (nr_dti.txt).
+
+    DTIs = pd.read_csv(fpath, sep='\t') 
+    DTIs.columns = ['Drug', 'Protein']
+
+Then, load the Graph Embedding Helper object, specifying the mode
+you want the dataset to fulfill, subsampling options, number of seeds, number of folds, etc. See help for more information.
+
+    GEHobj = GEH(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
+
+Optionally, you can apply a certain matrix for ... (DESCRIBE)
+
+    #Apply RMSD
+    GEHobj.apply_RMSD(fpath = '/mnt/md0/data/jfuente/DTI/Input4Models/Docking/Results/RMSD_full_matrix.pkl')
+
+Now, generate the splits according to the specified options. Here, two different functions can be called:
+
+    #Generate splits 
+    GEHobj.generate_splits_cv() #(Cross-Validation)
+    GEHobj.generate_splits_tvt() #(Train-Validation-Test)
+
+Finally, retrieve the results. If RMSD option has been applied, 
+a extra dictionary (prot_info_dict) with info will be returned ...(FINISH)
+
+    #Retrieve results
+    seed_cv_list  = GEHobj.retrieve_results() #(Default)
+    seed_cv_list, prot_info_dict = GEHobj.retrieve_results() #(RMSD applied)
+
+You can verify that your splits fulfill the mode requirements after they have been generated.
+
+    #Test your splits
+    GEHobj.test_splits()
+    
