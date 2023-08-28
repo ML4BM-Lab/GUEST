@@ -4,7 +4,6 @@
 This is a package for evaluating Graph Embedding prediction methodologies. It includes multiple functionalities that will ease the development of drug repurposing models. This is included as a part of the paper "Towards a more inductive world for drug repurposing approaches".
 
 ## Tutorial
-In order to use the package, you can go through the following steps:
 First, load your DTI network. It must a 2 column file, with
 Drugs in the first column and Proteins in the second column. An example is located in the test folder (nr_dti.txt).
 
