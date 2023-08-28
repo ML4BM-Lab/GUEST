@@ -15,7 +15,7 @@ you want the dataset to fulfill, subsampling options, number of seeds, number of
 
     GUESTobj = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
 
-Optionally, you can apply a certain matrix for ... (DESCRIBE)
+Optionally, you can apply a certain matrix for (DESCRIBE)
 
     #Apply RMSD
     GUESTobj.apply_RMSD(fpath = '.../RMSD_full_matrix.pkl')
