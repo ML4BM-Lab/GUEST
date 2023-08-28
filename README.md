@@ -19,7 +19,7 @@ you want the dataset to fulfill, subsampling options, number of seeds, number of
 Optionally, you can apply a certain matrix for ... (DESCRIBE)
 
     #Apply RMSD
-    GUESTobj.apply_RMSD(fpath = '/mnt/md0/data/jfuente/DTI/Input4Models/Docking/Results/RMSD_full_matrix.pkl')
+    GUESTobj.apply_RMSD(fpath = '.../RMSD_full_matrix.pkl')
 
 Now, generate the splits according to the specified options. Here, two different functions can be called:
 
