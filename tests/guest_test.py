@@ -3,7 +3,7 @@ import os
 import pytest
 import sys
 sys.path.append('src')
-from geppy.gep_module import GEH
+from guest.guest_module import GEH
 import logging
 
 

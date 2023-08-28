@@ -22,7 +22,7 @@ classifiers = [
     'Programming Language :: Python :: 3 :: Only',
     'Operating System :: OS Independent',
 ]
-keywords = ["graph embedding", "pypi", "drug repurposing"]
+keywords = ["graph embedding", "pypi", "drug repurposing", "splitting", "graph embedding splitting"]
 dependencies = [
     "pandas",
     "scikit-learn",
@@ -34,7 +34,7 @@ requires-python = ">=3"
 dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
 
 [project.urls]
-Homepage = "https://github.com/ubioinformat/graph_embedding_py"
+Homepage = "https://github.com/ubioinformat/guest"
 
 [tool.pytest.ini_options]
 log_cli = true
