@@ -3,7 +3,7 @@ import os
 import pytest
 import sys
 sys.path.append('src')
-from guest.guest_module import GEH
+from graphguest.guest import GUEST
 import logging
 
 
@@ -60,7 +60,7 @@ def check_splits(splits, verbose=False, foldnum=10):
 
 @pytest.fixture
 def load_dti():
-    """This fixture will only be available within the scope of geh_test"""
+    """This fixture will only be available within the scope of GUEST_test"""
     DTIs = pd.read_csv(os.path.join('tests','nr_dti.txt'), sep='\t', header = None)
     DTIs.columns = ['Drug','Protein']
     return DTIs
@@ -75,9 +75,9 @@ def test_generate_splits_cv(load_dti):
     for mode in MODES:
 
         LOGGER.info(f"Generating splits for mode {mode}")
-        GEHobj = GEH(load_dti, mode = mode, subsampling = True, n_seeds = NSEEDS, foldnum = FOLDNUM)
-        GEHobj.generate_splits_cv()
-        seed_cv_list = GEHobj.retrieve_results()
+        GUESTobj = GUEST(load_dti, mode = mode, subsampling = True, n_seeds = NSEEDS, foldnum = FOLDNUM)
+        GUESTobj.generate_splits_cv()
+        seed_cv_list = GUESTobj.retrieve_results()
 
         assert len(seed_cv_list) == NSEEDS
         LOGGER.info(f"Generated {NSEEDS} runs")

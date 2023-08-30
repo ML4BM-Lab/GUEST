@@ -1,9 +1,9 @@
 import random as r
 from collections import defaultdict as dd
 import functools as f
-from guest.guest_optimizer_module import optimize_folds
-from guest.guest_reorder_module import Sd_St_reorder, Sp_reorder
-from guest.guest_interactions_module import get_interactions_dict
+from graphguest.optimizer_module import optimize_folds
+from graphguest.reorder_module import Sd_St_reorder, Sp_reorder
+from graphguest.interactions_module import get_interactions_dict
 
 def generate_splits(DTIs, mode, foldnum, subsampling, n_seeds, only_distribution, 
                     negative_to_positive_ratio, negative_final_fold,

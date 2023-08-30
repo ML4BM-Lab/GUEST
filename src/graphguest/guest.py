@@ -6,9 +6,9 @@ import math as m
 import os
 import pandas as pd
 
-from guest.guest_rmsd_module import generate_RMSDdict, filter_DTIs, get_positives_for_final_fold
-from guest.guest_helper_module import Kfold_from_lists, names_from_edges
-from guest.guest_splits_module import generate_splits
+from graphguest.rmsd_module import generate_RMSDdict, filter_DTIs, get_positives_for_final_fold
+from graphguest.helper_module import Kfold_from_lists, names_from_edges
+from graphguest.splits_module import generate_splits
 
 class GUEST:
 

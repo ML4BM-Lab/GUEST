@@ -5,7 +5,7 @@ requires      = ["setuptools>=39.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "GUEST"
+name = "graphguest"
 version = "1.0.0"
 description = "Graph Universal Embedding Splitting Tool"
 readme = "README.md"
