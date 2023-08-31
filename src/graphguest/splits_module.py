@@ -94,7 +94,5 @@ def generate_splits(DTIs, mode, foldnum, subsampling, n_seeds, only_distribution
             print("Only CV distribution has been generated!")
             return cv_distributions, Drug_inv_dd, Prot_inv_dd
 
-        
-
     return cv_distributions, pos_neg_interactions, Drug_inv_dd, Prot_inv_dd, Drug_L, Prot_L
     
