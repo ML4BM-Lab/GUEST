@@ -1,5 +1,4 @@
 from setuptools import setup
-from pip.req import parse_requirements
 
 setup(install_requires=[
     "colorama==0.4.6",
