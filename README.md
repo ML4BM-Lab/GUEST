@@ -22,12 +22,11 @@ In this line, GraphGuest allows to use a matrix of distances/scores between ever
 the negative DTI will be formed by the same drug and the protein that better maximizes (or minimizes) the distance/score with respect to the original protein from the positive DTI.
 
 Here now we describe the functionalities and parameters of the GraphGuest GUEST class:
-
-    **DTIs**: Interaction list in the form of a pandas matrix with the columns D and P as the type 1 and 2 nodes.
-    **mode**: The already introduced split criteria: random, Sp, Sd or St. default: Sp
-    **subsampling**: whether all interactions are chosen to build the dataset or subsampling is preferred instead. default: True
-    **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits.
-    **foldnum**: 
+- **DTIs**: Interaction list in the form of a pandas matrix with the columns D and P as the type 1 and 2 nodes.
+- **mode**: The already introduced split criteria: random, Sp, Sd or St. default: Sp
+- **subsampling**: whether all interactions are chosen to build the dataset or subsampling is preferred instead. default: True
+- **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits.
+- **foldnum**: 
 
 ## Tutorial
 First, load your DTI network. It must a 2 column file, with
