@@ -6,11 +6,10 @@ developed in the context of drug repurposing, as a part of the paper "Towards a 
 Drugs and Proteins, respectively, hence the evaluated graph would be a Drug Target Interaction (DTI) network.
 
 GraphGuest allows to split any chosen network into train/test following several criteria: 
-
-    **Random**: There is no constraint imposed, DTIs are distributed across train and test randomly.
-    **Sp**: Related to pairs. Any drug or protein may appear both in the train and test set, but interactions cannot be duplicated in the two sets.
-    **Sd**: Related to drug nodes. Drug nodes are not duplicated in the train and test set, i.e., a node evaluated during training does not appear in the test set. 
-    **St**: Related to targets. Protein nodes are not duplicated in the train and test set, each protein seen during training does not appear in the test set. 
+- **Random**: There is no constraint imposed, DTIs are distributed across train and test randomly.
+- **Sp**: Related to pairs. Any drug or protein may appear both in the train and test set, but interactions cannot be duplicated in the two sets.
+- **Sd**: Related to drug nodes. Drug nodes are not duplicated in the train and test set, i.e., a node evaluated during training does not appear in the test set. 
+- **St**: Related to targets. Protein nodes are not duplicated in the train and test set, each protein seen during training does not appear in the test set. 
 
 Generally DTI networks are highly sparse, i.e., there is a high number of negative interactions compared to the positive ones. Hence, including all negative edges is not feasible, 
 and would bias the model towards negative predictions. Accordingly, usually a balanced dataset is built by selecting all the positive interactions 
