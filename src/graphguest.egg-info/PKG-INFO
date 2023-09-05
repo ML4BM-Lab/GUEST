@@ -87,36 +87,47 @@ Here now we describe the functionalities and parameters of the GraphGuest GUEST 
 - **negative_to_positive_ratio**: How many negatives DTI will be subsampled respect to the positives ones.  (default: 1)
 
 
-First, load your DTI network. It must be a pandas matrix containing the columns "Drug" and "Protein". An example is located in the test folder (nr_dti.txt).
+First, load the required libraries:
+
+    from graphguest import GUEST
+    import pandas as pd
+
+Then, load the DTI dataset. It must be a pandas matrix containing the columns "Drug" and "Protein". An example of the Yamanishi's NR network is located in the test folder (nr_dti.txt).
 
     DTIs = pd.read_csv("tests/nr_dti.txt", sep='\t', header=None) 
     DTIs.columns = ['Drug', 'Protein']
 
-Then, load the GUEST object, specifying the mode
+Load the GUEST object, specifying the mode
 you want the dataset to fulfill, subsampling options, number of seeds, number of folds, etc. See help for more information.
 
-    GUESTobj = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
+    ggnr = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
 
 Optionally, you can apply a certain matrix for (DESCRIBE)
 
     #Apply RMSD
-    GUESTobj.apply_RMSD(fpath = '.../RMSD_full_matrix.pkl')
+    ggnr.apply_RMSD(fpath = '.../RMSD_full_matrix.pkl')
 
 Now, generate the splits according to the specified options. Here, two different functions can be called:
 
     #Generate splits 
-    GUESTobj.generate_splits_cv() #(Cross-Validation)
-    GUESTobj.generate_splits_tvt() #(Train-Validation-Test)
+    ggnr.generate_splits_cv() #(Cross-Validation)
+    ggnr.generate_splits_tvt() #(Train-Validation-Test)
 
 Finally, retrieve the results. If RMSD option has been applied, 
 a extra dictionary (prot_info_dict) with info will be returned ...(FINISH)
 
     #Retrieve results
-    seed_cv_list  = GUESTobj.retrieve_results() #(Default)
-    seed_cv_list, prot_info_dict = GUESTobj.retrieve_results() #(RMSD applied)
+    seed_cv_list  = ggnr.retrieve_results() #(Default)
+    seed_cv_list, prot_info_dict = ggnr.retrieve_results() #(RMSD applied)
 
 You can verify that your splits fulfill the mode requirements after they have been generated.
 
     #Test your splits
-    GUESTobj.test_splits()
+    ggnr.test_splits() 
+    
+    #verbose can be set to True if more information is desired. (verbose's default: False)
+    ggnr.test_splits(verbose=True) 
+
+    #You can also visualize the distribution by setting distr to True (distr's default: False)
+    ggnr.test_splits(distr=True)
     

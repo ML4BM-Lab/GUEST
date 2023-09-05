@@ -65,7 +65,7 @@ class GUEST:
         self.n_seeds = 1
         print("Using only 1 seed for RMSD option!")
 
-    def generate_splits_ttv(self, names = True, train_val_test_percentage = (0.7, 0.1, 0.2)):
+    def generate_splits_tvt(self, names = True, train_val_test_percentage = (0.7, 0.1, 0.2)):
 
         train_ratio, validation_ratio, test_ratio = train_val_test_percentage
         self.foldnum = m.ceil(1/test_ratio)
@@ -79,7 +79,7 @@ class GUEST:
 
         #Assign cv_distribution
         test_df = self.cv_distributions[0]
-        df_train, df_val = train_test_split(list(itertools.chain.from_iterable(self.cv_distribution[1:])), 
+        df_train, df_val = train_test_split(list(itertools.chain.from_iterable(self.cv_distributions[1:])), 
                                             test_size = validation_ratio/(train_ratio + validation_ratio),
                                             random_state = None, shuffle = False )
 
@@ -122,13 +122,13 @@ class GUEST:
                 if names:
 
                     #--positives--
-                    train_edges_pos, test_edges_pos = train_edges[train_edges[:,2] == 1,:-1], test_edges[test_edges[:,2] == 1,:-1]
+                    train_edges_pos, test_edges_pos = train_edges[train_edges[:,2] == 1, :-1], test_edges[test_edges[:,2] == 1, :-1]
                     
                     ##create names matrix from edges list
                     names_train_pos, names_test_pos = names_from_edges(train_edges_pos, test_edges_pos, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
 
                     #--negatives--
-                    train_edges_neg, test_edges_neg = train_edges[train_edges[:,2] == 0,:-1], test_edges[test_edges[:,2] == 0,:-1]
+                    train_edges_neg, test_edges_neg = train_edges[train_edges[:,2] == 0, :-1], test_edges[test_edges[:,2] == 0, :-1]
                     
                     ##create names matrix from edges list
                     names_train_neg, names_test_neg = names_from_edges(train_edges_neg,test_edges_neg, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
@@ -172,6 +172,6 @@ class GUEST:
 
     def test_splits(self, verbose=False, distr=False):
 
-        check_splits(verbose=verbose)
+        check_splits(splits=self.seed_cv_list, verbose=verbose, foldnum=self.foldnum)
         if distr:
-            print_cv_distribution(self.DTIs, self.cv_distributions)
+            print_cv_distribution(self.DTIs, cv_distribution=self.seed_cv_list)

@@ -1,3 +1,5 @@
+import functools as f
+
 #check splits
 def check_splits(splits, verbose=False, foldnum=10):
 
@@ -55,34 +57,35 @@ def check_splits(splits, verbose=False, foldnum=10):
            
             print("----------------- END OF SEED -----------------")
 
-    print('Checking conditions per fold')
+    print('Checking conditions per seed')
     check_condition()
 
     if verbose:
         print('Printing proportions')
         print_proportions(verbose=verbose)
 
-    return 
 
 #check distribution
 def print_cv_distribution(DTIs, cv_distribution):
 
-    print(f'Number of drugs originally -> {len(set(DTIs.Drug.values))}')
-    print(f'Number of prots originally -> {len(set(DTIs.Protein.values))}')
+    l1, l2, l3 = len(set(DTIs.Drug.values)), len(set(DTIs.Protein.values)), DTIs.shape[0]
+    print(f'\nbefore -> num drugs: {l1}, num proteins: {l2}, positive DTIs: {l3}, negatives DTIs {l1*l2 - l3}')
+    print(f'proteins before: {len(set(DTIs.Protein.values))}')
 
-    element_distribution = f.reduce(lambda a,b: a+b, cv_distribution)
-    drugs = set(list(map(lambda x: x[0], element_distribution)))
-    prots = set(list(map(lambda x: x[1], element_distribution)))
+    for i, seed_cv_distr in enumerate(cv_distribution):
+        
+        pos, negs = [], [] 
+        for fold in seed_cv_distr:
+            for j in range(len(fold)):
+                if j%2:
+                    negs += fold[j]
+                else:
+                    pos += fold[j]
 
-    print(f'Number of drugs in CV -> {len(drugs)}')
-    print(f'Number of prots in CV-> {len(prots)}')
-
-    for drug in drugs:
-        proteins_with_drugs = [element[1] for element in element_distribution if element[0] == drug]
-        print(f"Number of proteins per drug {drug} -> {len(proteins_with_drugs)}")
-
-    for prot in prots:
-        drugs_with_proteins = [element[0] for element in element_distribution if element[1] == prot]
-        print(f"Number of drugs per protein {prot} -> {len(drugs_with_proteins)}")
-
+        distr = pos + negs
+        drugs = set(map(lambda x: x[0], distr))
+        prots = set(map(lambda x: x[1], distr))
+        
+        print(f"seed {i}")
+        print(f'after -> num drugs: {len(drugs)}, num proteins: {len(prots)}, positive DTIs: {len(set(pos))}, negatives DTIs {len(set(negs))}')
 
