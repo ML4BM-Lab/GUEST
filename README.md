@@ -14,8 +14,9 @@ GraphGuest allows to split any chosen network into train/test following several 
 
 
 <p align="center" width="100%">
-    <img width="33%" src="imgs/Splitting.PNG">
+    <img width="75%" src="imgs/Splitting.PNG">
 </p>
+<sub>Figure 1: This is the image caption and a footnote can be added here.</sub>
 
 
 ### GraphGuest subsampling functionality
