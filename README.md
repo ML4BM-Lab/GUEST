@@ -12,10 +12,10 @@ GraphGuest allows to split any chosen network into train/test following several 
 - **Sd**: Related to drug nodes. Drug nodes are not duplicated in the train and test set, i.e., a node evaluated during training does not appear in the test set. 
 - **St**: Related to targets. Protein nodes are not duplicated in the train and test set, each protein seen during training does not appear in the test set. 
 
-<div style="text-align: center;">
-    ![alt text](imgs/Splitting.PNG "Splitting")
-    Splitting setup
-</div>
+
+![alt text](imgs/Splitting.PNG "Splitting")
+Splitting setup
+
 
 ### GraphGuest subsampling functionality
 
