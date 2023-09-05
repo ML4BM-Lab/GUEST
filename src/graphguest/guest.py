@@ -9,6 +9,7 @@ import pandas as pd
 from graphguest.rmsd_module import generate_RMSDdict, filter_DTIs, get_positives_for_final_fold
 from graphguest.helper_module import Kfold_from_lists, names_from_edges
 from graphguest.splits_module import generate_splits
+from graphguest.evaluate_module import check_splits, print_cv_distribution
 
 class GUEST:
 
@@ -168,3 +169,9 @@ class GUEST:
         else:
 
             return self.seed_cv_list
+
+    def test_splits(self, verbose=False, distr=False):
+
+        check_splits(verbose=verbose)
+        if distr:
+            print_cv_distribution(self.DTIs, self.cv_distributions)

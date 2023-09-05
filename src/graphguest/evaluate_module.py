@@ -41,28 +41,26 @@ def check_splits(splits, verbose=False, foldnum=10):
             if not prots_counter and not drugs_counter:
                 print('Sp split configuration accomplished!')
 
-    def print_proportions(verbose=True):
+    def print_proportions():
         for seed in range(len(splits)):
-            if verbose:
-                print(f"Len is {len(splits[seed])}")
+            
+            print(f"Len is {len(splits[seed])}")
             for fold in range(len(splits[seed])):
-                if verbose:
-                    print(f"Train positives len {len(splits[seed][fold][0])}")
-                    print(f"Train negatives len {len(splits[seed][fold][1])}")
-                    print(f"Test positives len {len(splits[seed][fold][2])}")
-                    print(f"Test negatives len {len(splits[seed][fold][3])}")
-                    print("--------------- END OF FOLD ---------------")
-            if verbose:
-                print("----------------- END OF SEED -----------------")
+                
+                print(f"Train positives len {len(splits[seed][fold][0])}")
+                print(f"Train negatives len {len(splits[seed][fold][1])}")
+                print(f"Test positives len {len(splits[seed][fold][2])}")
+                print(f"Test negatives len {len(splits[seed][fold][3])}")
+                print("--------------- END OF FOLD ---------------")
+           
+            print("----------------- END OF SEED -----------------")
 
     print('Checking conditions per fold')
-    #check condition
     check_condition()
 
-    # if verbose:
-    #     print('Printing proportions')
-    # #print proportions
-    # print_proportions(verbose=verbose)
+    if verbose:
+        print('Printing proportions')
+        print_proportions(verbose=verbose)
 
     return 
 
@@ -87,6 +85,4 @@ def print_cv_distribution(DTIs, cv_distribution):
         drugs_with_proteins = [element[0] for element in element_distribution if element[1] == prot]
         print(f"Number of drugs per protein {prot} -> {len(drugs_with_proteins)}")
 
-    ##~
-    return 
 

@@ -14,11 +14,8 @@ GraphGuest allows to split any chosen network into train/test following several 
 
 
 <p align="center" width="100%">
-    <img width="75%" src="imgs/Splitting.PNG">
-    <sub>Splitting criteria</sub>
+    <img width="50%" src="imgs/Splitting.PNG">
 </p>
-
-
 
 ### GraphGuest subsampling functionality
 
@@ -32,19 +29,24 @@ samples and increase accuracy and robustness of the drug repurposing model.
 In this line, GraphGuest allows to use a matrix of distances/scores between every Protein as an alternative to random subsampling. If this matrix is provided, for each positive DTI,
 the negative DTI will be formed by the same drug and the protein that better maximizes (or minimizes) the distance/score with respect to the original protein from the positive DTI.
 
+<p align="center" width="100%">
+    <img width="50%" src="imgs/RMSD.PNG">
+</p>
+
 ## How to use it
 
 Here now we describe the functionalities and parameters of the GraphGuest GUEST class:
-- **DTIs**: Interaction list in the form of a pandas matrix with the columns D and P as the type 1 and 2 nodes.
-- **mode**: The already introduced split criteria: random, Sp, Sd or St. default: Sp
-- **subsampling**: whether all interactions are chosen to build the dataset or subsampling is preferred instead. default: True
-- **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits.
-- **foldnum**: 
+- **DTIs**: Interaction list in the form of a pandas matrix with the columns "Drug" and "Protein" as the type 1 and 2 nodes.
+- **mode**: The already introduced split criteria: random, Sp, Sd or St. (default: Sp)
+- **subsampling**: Whether all interactions are chosen to build the dataset or subsampling is preferred instead. (default: True)
+- **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits. (default: 5)
+- **foldnum**: For each seed, number of folds in which the data will be splitted. (default: 10)
+- **negative_to_positive_ratio**: How many negatives DTI will be subsampled respect to the positives ones.  (default: 1)
 
-First, load your DTI network. It must a 2 column file, with
-Drugs in the first column and Proteins in the second column. An example is located in the test folder (nr_dti.txt).
 
-    DTIs = pd.read_csv(fpath, sep='\t') 
+First, load your DTI network. It must be a pandas matrix containing the columns "Drug" and "Protein". An example is located in the test folder (nr_dti.txt).
+
+    DTIs = pd.read_csv("tests/nr_dti.txt", sep='\t', header=None) 
     DTIs.columns = ['Drug', 'Protein']
 
 Then, load the GUEST object, specifying the mode
