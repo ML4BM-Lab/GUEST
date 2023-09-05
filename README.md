@@ -13,8 +13,9 @@ GraphGuest allows to split any chosen network into train/test following several 
 - **St**: Related to targets. Protein nodes are not duplicated in the train and test set, each protein seen during training does not appear in the test set. 
 
 
-![alt text](imgs/Splitting.PNG "Splitting")
-Splitting setup
+<p align="center" width="100%">
+    <img width="33%" src="imgs/Splitting.PNG">
+</p>
 
 
 ### GraphGuest subsampling functionality
