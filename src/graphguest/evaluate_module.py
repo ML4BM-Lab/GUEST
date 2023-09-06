@@ -1,21 +1,24 @@
 import functools as f
 
 #check splits
-def check_splits(splits, verbose=False, foldnum=10):
+def check_splits(splits, verbose=False):
+
+    #define foldnum
+    foldnum = len(splits[0])
 
     def check_condition():
         
         for seed in range(len(splits)):
             print(f"Seed {seed}")
             drugs_counter, prots_counter = 0,0
-            #print(f"Seed {seed}")
+            
             for fold in range(len(splits[seed])):
                 #TRAIN
-                drugs_train = set(map(lambda x: x[0], splits[seed][fold][0])).union(map(lambda x: x[0], splits[seed][fold][1]))
-                prots_train = set(map(lambda x: x[1], splits[seed][fold][0])).union(map(lambda x: x[1], splits[seed][fold][1]))
+                drugs_train = set(map(lambda x: x[0], f.reduce(lambda a,b : a+b, splits[seed][:fold] + splits[seed][fold+1:])))
+                prots_train = set(map(lambda x: x[1], f.reduce(lambda a,b : a+b, splits[seed][:fold] + splits[seed][fold+1:])))
                 #TEST
-                drugs_test = set(map(lambda x: x[0], splits[seed][fold][2])).union(map(lambda x: x[0], splits[seed][fold][3]))
-                prots_test = set(map(lambda x: x[1], splits[seed][fold][2])).union(map(lambda x: x[1], splits[seed][fold][3]))
+                drugs_test = set(map(lambda x: x[0], splits[seed][fold]))
+                prots_test = set(map(lambda x: x[1], splits[seed][fold]))
 
                 if drugs_test.difference(drugs_train):
                     drugs_counter +=1
@@ -62,25 +65,24 @@ def check_splits(splits, verbose=False, foldnum=10):
 
     if verbose:
         print('Printing proportions')
-        print_proportions(verbose=verbose)
+        print_proportions()
 
 
 #check distribution
-def print_cv_distribution(DTIs, cv_distribution):
+def print_cv_distribution(DTIs, cv_distributions):
 
     l1, l2, l3 = len(set(DTIs.Drug.values)), len(set(DTIs.Protein.values)), DTIs.shape[0]
     print(f'\nbefore -> num drugs: {l1}, num proteins: {l2}, positive DTIs: {l3}, negatives DTIs {l1*l2 - l3}')
-    print(f'proteins before: {len(set(DTIs.Protein.values))}')
 
-    for i, seed_cv_distr in enumerate(cv_distribution):
+    for i, seed_cv_distr in enumerate(cv_distributions):
         
         pos, negs = [], [] 
         for fold in seed_cv_distr:
             for j in range(len(fold)):
-                if j%2:
-                    negs += fold[j]
+                if not fold[j][2]%2:
+                    negs.append(fold[j])
                 else:
-                    pos += fold[j]
+                    pos.append(fold[j])
 
         distr = pos + negs
         drugs = set(map(lambda x: x[0], distr))

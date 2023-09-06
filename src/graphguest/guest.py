@@ -65,42 +65,44 @@ class GUEST:
         self.n_seeds = 1
         print("Using only 1 seed for RMSD option!")
 
-    def generate_splits_tvt(self, names = True, train_val_test_percentage = (0.7, 0.1, 0.2)):
+    def generate_splits_tvt(self, names = True, train_val_test_percentage = (0.7, 0.1, 0.2), verbose=False):
 
         train_ratio, validation_ratio, test_ratio = train_val_test_percentage
         self.foldnum = m.ceil(1/test_ratio)
 
         #Generate splits
-        self.cv_distributions,  self.pos_neg_interactions , self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L  = generate_splits(
+        self.cv_distributions,  self.pos_neg_interactions, self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L  = generate_splits(
                                                                                                                                             self.DTIs, self.mode, self.foldnum, self.subsampling, 
                                                                                                                                             self.n_seeds, self.only_distribution,
                                                                                                                                             self.negative_to_positive_ratio, self.negative_final_fold,
                                                                                                                                             self.RMSD_enable, self.RMSD_threshold, self.RMSD_dict, self.include_diagonal_RMSD)
+        for cv_distribution in self.cv_distributions: # seeds
 
-        #Assign cv_distribution
-        test_df = self.cv_distributions[0]
-        df_train, df_val = train_test_split(list(itertools.chain.from_iterable(self.cv_distributions[1:])), 
-                                            test_size = validation_ratio/(train_ratio + validation_ratio),
-                                            random_state = None, shuffle = False )
+            #Assign cv_distribution
+            test_df = cv_distribution[0]
+            df_train, df_val = train_test_split(list(itertools.chain.from_iterable(cv_distribution[1:])), 
+                                                test_size = validation_ratio/(train_ratio + validation_ratio),
+                                                random_state = None, shuffle = False)
 
-        total_len = len(df_train) + len(df_val) + len(test_df)
-        
-        print(f"Initial split dimensions {train_ratio}, {validation_ratio}, {test_ratio}")
-        print(f"Final split dimensions {len(df_train)/total_len}, {len(df_val)/total_len}, {len(test_df)/total_len}")
+            total_len = len(df_train) + len(df_val) + len(test_df)
+            
+            if verbose:
+                print(f"Initial split dimensions {train_ratio}, {validation_ratio}, {test_ratio}")
+                print(f"Final split dimensions {round(len(df_train)/total_len,4)}, {round(len(df_val)/total_len,4)}, {round(len(test_df)/total_len,4)}")
 
-        if names:
+            if names:
 
-            names_train, names_val = names_from_edges(df_train, df_val, self.Drug_inv_dd, self.Prot_inv_dd)
-            names_train, names_test = names_from_edges(df_train, test_df, self.Drug_inv_dd, self.Prot_inv_dd)
+                names_train, names_val = names_from_edges(df_train, df_val, self.Drug_inv_dd, self.Prot_inv_dd)
+                names_train, names_test = names_from_edges(df_train, test_df, self.Drug_inv_dd, self.Prot_inv_dd)
 
-            cv_list = [names_train, names_val, names_test]
-        
-        else:
+                cv_list = [names_train, names_val, names_test]
+            
+            else:
 
-            cv_list = [df_train , df_val, test_df]
+                cv_list = [df_train , df_val, test_df]
 
 
-        self.seed_cv_list.append(cv_list)
+            self.seed_cv_list.append(cv_list)
 
     def generate_splits_cv(self, names = True):
 
@@ -136,11 +138,11 @@ class GUEST:
                     #print(f"Train pos {len(names_train_pos)}, Train neg {len(names_train_neg)}, Test pos {len(names_test_pos)}, Test neg {len(names_test_neg)}")
 
                     #add each fold
-                    cv_list.append((names_train_pos,names_train_neg,names_test_pos,names_test_neg))
+                    cv_list.append((names_train_pos, names_train_neg, names_test_pos, names_test_neg))
 
                 else:
 
-                    cv_list.append((train_edges,test_edges))
+                    cv_list.append((train_edges, test_edges))
 
             #add each group of folds for each seed
             self.seed_cv_list.append(cv_list)
@@ -172,6 +174,6 @@ class GUEST:
 
     def test_splits(self, verbose=False, distr=False):
 
-        check_splits(splits=self.seed_cv_list, verbose=verbose, foldnum=self.foldnum)
+        check_splits(splits=self.cv_distributions, verbose=verbose)
         if distr:
-            print_cv_distribution(self.DTIs, cv_distribution=self.seed_cv_list)
+            print_cv_distribution(self.DTIs, cv_distribution=self.cv_distributions)
