@@ -11,6 +11,14 @@ from graphguest.helper_module import Kfold_from_lists, names_from_edges
 from graphguest.splits_module import generate_splits
 from graphguest.evaluate_module import check_splits, print_cv_distribution
 
+
+# ff = {node:[random.random() for _ in range(3)] if 'D'==node[0] else [random.random() for _ in range(2)] for node in DTIs.values.flatten()}
+
+# import pickle
+# with open('tests/node_emb_nr.pkl', 'wb') as handle:
+#     pickle.dump(ff, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+
 class GUEST:
 
     """
@@ -123,21 +131,21 @@ class GUEST:
                 if names:
 
                     #--positives--
-                    train_edges_pos, test_edges_pos = train_edges[train_edges[:,2] == 1, :-1], test_edges[test_edges[:,2] == 1, :-1]
+                    train_edges_pos, test_edges_pos = train_edges[train_edges[:,2] == 1], test_edges[test_edges[:,2] == 1]
                     
                     ##create names matrix from edges list
-                    names_train_pos, names_test_pos = names_from_edges(train_edges_pos, test_edges_pos, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
+                    names_train_pos, names_test_pos = names_from_edges(train_edges_pos, test_edges_pos, self.Drug_inv_dd, self.Prot_inv_dd)
 
                     #--negatives--
-                    train_edges_neg, test_edges_neg = train_edges[train_edges[:,2] == 0, :-1], test_edges[test_edges[:,2] == 0, :-1]
+                    train_edges_neg, test_edges_neg = train_edges[train_edges[:,2] == 0], test_edges[test_edges[:,2] == 0]
                     
                     ##create names matrix from edges list
-                    names_train_neg, names_test_neg = names_from_edges(train_edges_neg,test_edges_neg, self.Drug_inv_dd, self.Prot_inv_dd, cv_enable = True)
+                    names_train_neg, names_test_neg = names_from_edges(train_edges_neg,test_edges_neg, self.Drug_inv_dd, self.Prot_inv_dd)
 
                     #print(f"Train pos {len(names_train_pos)}, Train neg {len(names_train_neg)}, Test pos {len(names_test_pos)}, Test neg {len(names_test_neg)}")
 
                     #add each fold
-                    cv_list.append((names_train_pos, names_train_neg, names_test_pos, names_test_neg))
+                    cv_list.append((names_train_pos + names_train_neg, names_test_pos + names_test_neg))
 
                 else:
 
@@ -146,7 +154,17 @@ class GUEST:
             #add each group of folds for each seed
             self.seed_cv_list.append(cv_list)
        
-    def retrieve_results(self):
+    def retrieve_results(self, node_emb = {}):
+
+        seed_cv_ne = []
+        if node_emb:
+            for s in range(len(self.seed_cv_list)): #seed
+                fold_ne = []
+                for f in range(len(self.seed_cv_list[0])): #fold
+                    train = [node_emb[d] + node_emb[t] for d,t,_ in self.seed_cv_list[s][f][0]] #train
+                    test = [node_emb[d] + node_emb[t] for d,t,_ in self.seed_cv_list[s][f][1]] #test
+                    fold_ne.append([train, test])
+                seed_cv_ne.append(fold_ne)
 
         if self.RMSD_enable:
 
@@ -161,15 +179,21 @@ class GUEST:
 
             self.negative_final_fold = r.sample(self.negative_final_fold, len(self.positive_final_fold))
             final_fold = self.positive_final_fold + self.negative_final_fold
-            self.prot_info_dict = {'neg_prot_dict': Counter(neg_prots), 'neg_percentage': round(len(neg_prots) / self.Prot_L * 100,2), 'final_fold' : final_fold}
 
+            self.prot_info_dict = {'neg_prot_dict': Counter(neg_prots), 'neg_percentage': round(len(neg_prots) / self.Prot_L * 100,2), 'final_fold' : final_fold}
             print(f"{len(self.positive_final_fold)} positives and {len(self.negative_final_fold)} negatives selected for final fold, negative is using a {self. prot_info_dict['neg_percentage']}% of total proteins")
 
-            return self.seed_cv_list, self.prot_info_dict
+            if node_emb:
+                return self.seed_cv_list, final_fold, seed_cv_ne
+            else:
+                return self.seed_cv_list, final_fold
 
         else:
-
-            return self.seed_cv_list
+            
+            if node_emb:
+                return self.seed_cv_list, seed_cv_ne
+            else:
+                return self.seed_cv_list
 
     def test_splits(self, verbose=False, distr=False):
 

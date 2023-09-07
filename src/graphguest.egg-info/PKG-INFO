@@ -58,7 +58,7 @@ This is a package for evaluating Graph Embedding prediction methodologies. Graph
 ### GraphGuest splitting functionality
 
 GraphGuest allows to split any chosen network into train/test following several criteria: 
-- **Random**: There is no constraint imposed, DTIs are distributed across train and test randomly.
+- **Random**: There are no constraints imposed, DTIs are distributed across train and test randomly.
 - **Sp**: Related to pairs. Any drug or protein may appear both in the train and test set, but interactions cannot be duplicated in the two sets.
 - **Sd**: Related to drug nodes. Drug nodes are not duplicated in the train and test set, i.e., a node evaluated during training does not appear in the test set. 
 - **St**: Related to targets. Protein nodes are not duplicated in the train and test set, each protein seen during training does not appear in the test set. 
@@ -97,41 +97,45 @@ First, load the required libraries:
 
     from graphguest import GUEST
     import pandas as pd
+    import pickle
 
 Then, load the DTI dataset. It must be a pandas matrix containing the columns "Drug" and "Protein". An example of the Yamanishi's NR network is located in the test folder (nr_dti.txt).
 
     DTIs = pd.read_csv("tests/nr_dti.txt", sep='\t', header=None) 
     DTIs.columns = ['Drug', 'Protein']
 
-Load the GUEST object, specifying the mode you want the dataset to fulfill, subsampling options, number of seeds, number of folds, etc. See help for more information.
+Load the GUEST object, specifying the DTI dataset, the mode you want the dataset to fulfill, as well as subsampling options and number of seeds.
 
     ggnr = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5)
 
-Optionally, you can pass as an argument any score matrix related to the Protein's column. In this case, we will pass the matrix formed by computing
-the RMSD between every pair of proteins in the NR dataset we are working with. Consequently, now the negative subsampling will be replaced by a 
-rank-based subsampling, in which for every DTI, the rank will be used to select the negatives DTIs according to a predefined threshold (See RMSD Figure).
+You can optionally pass a Protein column's score matrix as an argument. This matrix is computed by compute RMSD(atomic distances) between every pair of proteins in the NR dataset we're using. As a result, negative subsampling will shift from random selection to a rank-based approach. For each Drug-Target Interaction (DTI), we'll select negative DTIs using their rank and a predefined threshold. Here the discarded RMSD values are <=2.5, the held out are >2.5 & <=5 and >5 & <=6 to subsample negatives (see RMSD Figure for reference).
 
-    #Apply rank based on RMSD, in this case the discarded RMSD are <=2.5, the left 
-    #out are >2.5 & <=5 and we will use RMSD values >5 & <=6 to subsample negatives.
-    ggnr.apply_rank(RMSD_threshold = (2.5,5,6), fpath = 'tests/rmsd_nr.pkl')
+    ggnr.apply_rank(RMSD_threshold = (2.5, 5, 6), fpath = 'tests/rmsd_nr.pkl') #(example matrix contains random values)
 
-Now, generate the splits according to the specified options. Here, two different functions can be called:
-
-    #Generate splits 
+Now, generate the splits according to the specified options. GraphGuest can generate n folds fulfilling 
+split criteria in a Cross-Validation fashion, or following a Train/Val/Test configuration.
+ 
     ggnr.generate_splits_cv(foldnum=10) #(Cross-Validation)
     ggnr.generate_splits_tvt() #(Train-Validation-Test)
 
-Finally, retrieve the results. If RMSD option has been applied, a extra dictionary (prot_info_dict) with info will be returned.
+Finally, retrieve the results. If RMSD option has been applied, the held-out fold will be returned (See RMSD Figure). Also, a node
+embedding dictionary can be passed as an argument to generate the node embedding datasets according to the generated split distribution.
 
-    #Retrieve results
-    seed_cv_list  = ggnr.retrieve_results() #(Default)
-    seed_cv_list, prot_info_dict = ggnr.retrieve_results() #(RMSD applied)
+    #load the node embedding dictionary (we randomly generate (2,) and (3,) shaped arrays for drugs and proteins, respectively)
+    with open('tests/node_emb_nr.pkl', 'rb') as handle:
+        node_emb = pickle.load(handle)
+    
+    #retrieve the results (if node_emb is not passed, then seed_cv_ne won't be returned)
+    seed_cv_list = ggnr.retrieve_results() #(Default)
+    seed_cv_list, seed_cv_ne = ggnr.retrieve_results(node_emb) #(Default with node_emb dictionary)
+
+    seed_cv_list, final_fold = ggnr.retrieve_results() #(RMSD applied)
+    seed_cv_list, final_fold, seed_cv_ne = ggnr.retrieve_results(node_emb) #(RMSD applied with node_emb dictionary)
 
 You can verify that your splits fulfill the mode requirements after they have been generated. Note that
-if any rank matrix is applied instead of random subsampling, split constraints will not be applied due to 
+if any rank matrix is applied instead of random subsampling, split mode will be ignored due to 
 inconsistencies between the rank and the split constraints.
 
-    #Test your splits
     ggnr.test_splits() 
     
     #verbose can be set to True if more information is desired. (verbose's default: False)

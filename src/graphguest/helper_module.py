@@ -11,18 +11,12 @@ def Kfold_from_lists(cv_distribution):
         test_edges = set_to_matrix(cv_distribution[i])
         yield train_edges, test_edges
 
-def names_from_edges(train_edges, test_edges, Drug_inv_dd, Prot_inv_dd, cv_enable = False):
-
-    if cv_enable:
-        #generate names matrix from positive edges
-        train_names_matrix = [(Drug_inv_dd[d], Prot_inv_dd[p]) for d,p in train_edges]
-        #same with negatives
-        test_names_matrix = [(Drug_inv_dd[d], Prot_inv_dd[p]) for d,p in test_edges]
-    else:
-        #generate names matrix from positive edges
-        train_names_matrix = [(Drug_inv_dd[d], Prot_inv_dd[p], label) for d,p,label in train_edges]
-        #same with negatives
-        test_names_matrix = [(Drug_inv_dd[d], Prot_inv_dd[p], label) for d,p,label in test_edges]
+def names_from_edges(train_edges, test_edges, Drug_inv_dd, Prot_inv_dd):
+    
+    #generate names matrix from positive edges
+    train_names_matrix = [(Drug_inv_dd[d], Prot_inv_dd[p], label) for d,p,label in train_edges]
+    #same with negatives
+    test_names_matrix = [(Drug_inv_dd[d], Prot_inv_dd[p], label) for d,p,label in test_edges]
 
     return train_names_matrix, test_names_matrix
 
