@@ -38,8 +38,16 @@ Classifier: Programming Language :: Python :: 3 :: Only
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3
 Description-Content-Type: text/markdown
-Provides-Extra: dev
 License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: tqdm
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: bumpver; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: pip-tools; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
 
 # Graph Universal Embedding Splitting Tool (GUEST)
 
@@ -80,12 +88,10 @@ the negative DTI will be formed by the same drug and the protein that better max
 
 Here now we describe the functionalities and parameters of the GraphGuest GUEST class:
 - **DTIs**: Interaction list in the form of a pandas matrix with the columns "Drug" and "Protein" as the type 1 and 2 nodes.
-- **mode**: The already introduced split criteria: random, Sp, Sd or St. (default: Sp)
-- **subsampling**: Whether all interactions are chosen to build the dataset or subsampling is preferred instead. (default: True)
-- **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits. (default: 5)
-- **foldnum**: For each seed, number of folds in which the data will be splitted. (default: 10)
-- **negative_to_positive_ratio**: How many negatives DTI will be subsampled respect to the positives ones.  (default: 1)
-
+- **mode**: The already introduced split criteria: random, Sp, Sd or St (default: Sp).
+- **subsampling**: Whether all interactions are chosen to build the dataset or subsampling is preferred instead (default: True).
+- **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits (default: 5).
+- **negative_to_positive_ratio**: How many negatives DTI will be subsampled respect to the positives ones  (default: 1).
 
 First, load the required libraries:
 
@@ -97,30 +103,33 @@ Then, load the DTI dataset. It must be a pandas matrix containing the columns "D
     DTIs = pd.read_csv("tests/nr_dti.txt", sep='\t', header=None) 
     DTIs.columns = ['Drug', 'Protein']
 
-Load the GUEST object, specifying the mode
-you want the dataset to fulfill, subsampling options, number of seeds, number of folds, etc. See help for more information.
+Load the GUEST object, specifying the mode you want the dataset to fulfill, subsampling options, number of seeds, number of folds, etc. See help for more information.
 
-    ggnr = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5, foldnum = 10)
+    ggnr = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5)
 
-Optionally, you can apply a certain matrix for (DESCRIBE)
+Optionally, you can pass as an argument any score matrix related to the Protein's column. In this case, we will pass the matrix formed by computing
+the RMSD between every pair of proteins in the NR dataset we are working with. Consequently, now the negative subsampling will be replaced by a 
+rank-based subsampling, in which for every DTI, the rank will be used to select the negatives DTIs according to a predefined threshold (See RMSD Figure).
 
-    #Apply RMSD
-    ggnr.apply_RMSD(fpath = '.../RMSD_full_matrix.pkl')
+    #Apply rank based on RMSD, in this case the discarded RMSD are <=2.5, the left 
+    #out are >2.5 & <=5 and we will use RMSD values >5 & <=6 to subsample negatives.
+    ggnr.apply_rank(RMSD_threshold = (2.5,5,6), fpath = 'tests/rmsd_nr.pkl')
 
 Now, generate the splits according to the specified options. Here, two different functions can be called:
 
     #Generate splits 
-    ggnr.generate_splits_cv() #(Cross-Validation)
+    ggnr.generate_splits_cv(foldnum=10) #(Cross-Validation)
     ggnr.generate_splits_tvt() #(Train-Validation-Test)
 
-Finally, retrieve the results. If RMSD option has been applied, 
-a extra dictionary (prot_info_dict) with info will be returned ...(FINISH)
+Finally, retrieve the results. If RMSD option has been applied, a extra dictionary (prot_info_dict) with info will be returned.
 
     #Retrieve results
     seed_cv_list  = ggnr.retrieve_results() #(Default)
     seed_cv_list, prot_info_dict = ggnr.retrieve_results() #(RMSD applied)
 
-You can verify that your splits fulfill the mode requirements after they have been generated.
+You can verify that your splits fulfill the mode requirements after they have been generated. Note that
+if any rank matrix is applied instead of random subsampling, split constraints will not be applied due to 
+inconsistencies between the rank and the split constraints.
 
     #Test your splits
     ggnr.test_splits() 
@@ -128,6 +137,6 @@ You can verify that your splits fulfill the mode requirements after they have be
     #verbose can be set to True if more information is desired. (verbose's default: False)
     ggnr.test_splits(verbose=True) 
 
-    #You can also visualize the distribution by setting distr to True (distr's default: False)
+    #You can also visualize the final distribution of DTIs by setting distr to True (distr's default: False)
     ggnr.test_splits(distr=True)
     

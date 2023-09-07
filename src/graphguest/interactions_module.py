@@ -26,11 +26,11 @@ def get_interactions_dict(DTIs, seed, subsampling,
 
             """
             """
-            After applying the boxe's method
+            After applying the boxes' method
             """
 
-            train_val_lth = 5
-            train_val_uth = RMSD_threshold
+            train_val_lth = RMSD_threshold[1]
+            train_val_uth = RMSD_threshold[2]
 
             sortAllItems_thresholded = [prot_rmsd_tuple for prot_rmsd_tuple in sortAllItems if prot_rmsd_tuple[1] > train_val_lth and prot_rmsd_tuple[1] < train_val_uth]
             
@@ -40,14 +40,13 @@ def get_interactions_dict(DTIs, seed, subsampling,
             r.shuffle(sortAllItems_thresholded)
 
             ## final fold
-            final_fold_lth = 2.5
-            final_fold_uth = 5
+            final_fold_lth = RMSD_threshold[0]
+            final_fold_uth = RMSD_threshold[1]
             #Get the kept out items and select the last one (closest to the threshold)
             keptOutItems = [prot_rmsd_tuple for prot_rmsd_tuple in sortAllItems if prot_rmsd_tuple[1] > final_fold_lth and prot_rmsd_tuple[1] < final_fold_uth]
             if len(keptOutItems):
                 negative_final_fold.append((Drug_inv_dd[elementid], r.sample(keptOutItems,1)[0][0],0))
             
-
             #remove duplicities
             for tupla in sortAllItems_thresholded:
                 #print(tupla)

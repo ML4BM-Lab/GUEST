@@ -4,6 +4,30 @@ from collections import defaultdict as dd
 import pandas as pd
 from tqdm import tqdm
 
+# import requests
+# def get_dict_hsa2uni():
+#     '''
+#     http://rest.kegg.jp/conv/hsa/uniprot 
+#     return a dict to change from hsa to uniprot ID
+#     '''
+#     r = requests.get('http://rest.kegg.jp/conv/hsa/uniprot')
+#     rlines = r.text.split('\n')
+#     up, hsa = [], []
+#     for line in rlines:
+#         if line != '':
+#             upi, hsai = line.split('\t')
+#             up.append(upi.lstrip('up:'))
+#             hsa.append(hsai.replace(':',''))
+#     return dict(zip(hsa, up))
+
+# ##
+# hsa2uni = get_dict_hsa2uni()
+# protnames = DTIs.Protein.map(hsa2uni).values
+# RMSD[RMSD.columns.isin(protnames)]
+# DTIs.Protein = DTIs.Protein.map(hsa2uni).values
+
+# DTIs.to_csv('tests/nr_dti_renamed.txt',sep='\t', index=None, header=None)
+
 
 def generate_RMSDdict(initial_proteins, include_diagonal_RMSD, fpath):
 
@@ -12,7 +36,7 @@ def generate_RMSDdict(initial_proteins, include_diagonal_RMSD, fpath):
         #get the index
         ind = [i for i,x in enumerate(names) if x in initial_proteins]
 
-        return RMSD[ind, :][:,ind], list(np.array(names)[ind])
+        return RMSD[ind], list(np.array(names)[ind])
 
     #load RMSD object
     RMSD = pd.read_pickle(fpath)
@@ -111,7 +135,7 @@ def get_positives_for_final_fold(DTIs):
     # Check there is no DTI 
     assert all([out_of_sample_edge[1] not in DTIs_kept_l for out_of_sample_edge in final_pos_edges])
 
-    print(f"Shape after dropping out some positive proteins {len(set(DTIs_kept['Drug'].values))} x {len(set(DTIs_kept['Protein'].values))}")
+    print(f"Shape after dropping out proteins non-found in rank matrix: {len(set(DTIs_kept['Drug'].values))} x {len(set(DTIs_kept['Protein'].values))}")
 
     return final_pos_edges, DTIs_kept
 

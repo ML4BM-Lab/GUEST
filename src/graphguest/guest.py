@@ -23,13 +23,12 @@ class GUEST:
         - St, corresponds to the situation when there are not DTI in the training data for some proteins
     """
 
-    def __init__(self, DTIs, mode = "random", subsampling = True, n_seeds = 5, foldnum = 10, negative_to_positive_ratio = 1, only_distribution = False):
+    def __init__(self, DTIs, mode = "random", subsampling = True, n_seeds = 5, negative_to_positive_ratio = 1, only_distribution = False):
 
         self.DTIs = DTIs
         self.mode = mode
         self.subsampling = subsampling
         self.n_seeds = n_seeds
-        self.foldnum = foldnum
         self.only_distribution = only_distribution
         self.negative_to_positive_ratio = negative_to_positive_ratio
 
@@ -47,7 +46,7 @@ class GUEST:
         self.RMSD_enable = False
         self.negative_final_fold = None
 
-    def apply_RMSD(self, RMSD_threshold = 6, include_diagonal_RMSD = False, fpath = ""):
+    def apply_rank(self, RMSD_threshold = (2.5,5,6), include_diagonal_RMSD = False, fpath = ""):
 
         #Assign rmsd variables
         self.RMSD_enable = True
@@ -68,11 +67,11 @@ class GUEST:
     def generate_splits_tvt(self, names = True, train_val_test_percentage = (0.7, 0.1, 0.2), verbose=False):
 
         train_ratio, validation_ratio, test_ratio = train_val_test_percentage
-        self.foldnum = m.ceil(1/test_ratio)
+        foldnum = m.ceil(1/test_ratio)
 
         #Generate splits
         self.cv_distributions,  self.pos_neg_interactions, self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L  = generate_splits(
-                                                                                                                                            self.DTIs, self.mode, self.foldnum, self.subsampling, 
+                                                                                                                                            self.DTIs, self.mode, foldnum, self.subsampling, 
                                                                                                                                             self.n_seeds, self.only_distribution,
                                                                                                                                             self.negative_to_positive_ratio, self.negative_final_fold,
                                                                                                                                             self.RMSD_enable, self.RMSD_threshold, self.RMSD_dict, self.include_diagonal_RMSD)
@@ -104,12 +103,12 @@ class GUEST:
 
             self.seed_cv_list.append(cv_list)
 
-    def generate_splits_cv(self, names = True):
+    def generate_splits_cv(self, foldnum=10, names = True):
 
         
         #Generate splits
         self.cv_distributions, self.pos_neg_interactions, self.Drug_inv_dd, self.Prot_inv_dd, self.Drug_l, self.Prot_L = generate_splits(
-                                                                                                                                        self.DTIs, self.mode, self.foldnum, self.subsampling, 
+                                                                                                                                        self.DTIs, self.mode, foldnum, self.subsampling, 
                                                                                                                                         self.n_seeds, self.only_distribution,
                                                                                                                                         self.negative_to_positive_ratio, self.negative_final_fold, 
                                                                                                                                         self.RMSD_enable, self.RMSD_threshold, self.RMSD_dict, self.include_diagonal_RMSD)
@@ -174,6 +173,9 @@ class GUEST:
 
     def test_splits(self, verbose=False, distr=False):
 
-        check_splits(splits=self.cv_distributions, verbose=verbose)
-        if distr:
-            print_cv_distribution(self.DTIs, cv_distribution=self.cv_distributions)
+        if self.RMSD_enable:
+            print("RMSD option was enable, so split (Sp, Sd or St) constraints were not applied")
+        else:
+            check_splits(splits=self.cv_distributions, verbose=verbose)
+            if distr:
+                print_cv_distribution(self.DTIs, cv_distributions=self.cv_distributions)
