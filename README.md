@@ -54,7 +54,8 @@ Load the GUEST object, specifying the DTI dataset, the mode you want the dataset
 
 You can optionally pass a Protein column's score matrix as an argument. This matrix is built by computing the Root Mean Square Devitation (RMSD) between every pair of proteins (atomic distances) in the evaluated dataset. As a result, negative subsampling will shift from random selection to a rank-based approach. For each Drug-Target Interaction (DTI), negative DTIs will be selected according to their rank and a predefined threshold. Here the discarded RMSD values are <=2.5 Å, the held out are >2.5 & <=5 Å and >5 & <=6 Å (see RMSD Figure).
 
-    ggnr.apply_rank(RMSD_threshold = (2.5, 5, 6), fpath = 'tests/rmsd_nr.pkl') #(example matrix contains random values)
+    # Example matrix containing random values
+    ggnr.apply_rank(RMSD_threshold = (2.5, 5, 6), fpath = 'tests/rmsd_nr.pkl') 
 
 Now, generate the splits according to the specified options. GraphGuest can generate n folds fulfilling 
 split criteria in a Cross-Validation fashion, or following a Train/Val/Test configuration.
@@ -65,21 +66,28 @@ split criteria in a Cross-Validation fashion, or following a Train/Val/Test conf
 Finally, retrieve the results. If RMSD option has been applied, the held-out fold will be returned (See RMSD Figure). Also, a node
 embedding dictionary can be passed as an argument to generate the node embedding datasets according to the generated split distribution.
 
-    #load the node embedding dictionary (we randomly generate (2,) and (3,) shaped arrays for drugs and proteins, respectively)
+    ## Load the node embedding dictionary 
+    # We randomly generate (2,) and (3,) shaped arrays for drugs and proteins, respectively
     with open('tests/node_emb_nr.pkl', 'rb') as handle:
         node_emb = pickle.load(handle)
     
-    #retrieve the results (if node_emb is not passed, then seed_cv_ne won't be returned)
-    seed_cv_list = ggnr.retrieve_results() #(Default)
-    seed_cv_list, seed_cv_ne = ggnr.retrieve_results(node_emb) #(Default with node_emb dictionary)
+    ## Retrieve the results
+    # Default behavior
+    seed_cv_list = ggnr.retrieve_results() 
 
-    seed_cv_list, final_fold = ggnr.retrieve_results() #(RMSD applied)
-    seed_cv_list, final_fold, seed_cv_ne = ggnr.retrieve_results(node_emb) #(RMSD applied with node_emb dictionary)
+    # Passing a node embedding dictionary
+    seed_cv_list, seed_cv_ne = ggnr.retrieve_results(node_emb) 
+
+    # When score/RMSD matrix is provided (*apply_rank* method called)
+    seed_cv_list, final_fold = ggnr.retrieve_results() 
+
+    # If previous options (rmsd + node_emb dict) are combined
+    seed_cv_list, final_fold, seed_cv_ne = ggnr.retrieve_results(node_emb) 
 
 You can verify that your splits fulfill the mode requirements after they have been generated. Note that
 if the *apply_rank* method has been called, the split mode argument will be ignored due to 
 inconsistencies between the rank and the split constraints (Sp, Sd or St constraints may not be possible 
-to be fulfilled if a rank-based constraint has been imposed as well.)
+to fulfill if a rank-based constraint has been imposed as well.)
 
     ggnr.test_splits() 
     
