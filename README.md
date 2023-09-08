@@ -6,11 +6,11 @@ This is a package for evaluating Graph Embedding prediction methodologies. Graph
 
 ### GraphGuest splitting functionality
 
-GraphGuest allows to split any chosen network into train/test following several criteria: 
+GraphGuest allows to split any chosen network into train/test folds following several criteria and configurations: 
 - **Random**: There are no constraints imposed, DTIs are distributed across train and test randomly.
 - **Sp**: Related to pairs. Any drug or protein may appear both in the train and test set, but interactions cannot be duplicated in the two sets.
-- **Sd**: Related to drug nodes. Drug nodes are not duplicated in the train and test set, i.e., a node evaluated during training does not appear in the test set. 
-- **St**: Related to targets. Protein nodes are not duplicated in the train and test set, each protein seen during training does not appear in the test set. 
+- **Sd**: Related to drug nodes. Drug nodes are not duplicated in the train and test set, i.e., a drug node evaluated during training does not appear in the test set. 
+- **St**: Related to targets. Protein nodes are not duplicated in the train and test set, therefore each protein seen during training does not appear in the test set. 
 
 
 <p align="center" width="100%">
@@ -19,18 +19,13 @@ GraphGuest allows to split any chosen network into train/test following several 
 
 ### GraphGuest subsampling functionality
 
-Generally DTI networks are highly sparse, i.e., there is a high number of negative interactions compared to the positive ones. Hence, including all negative edges is not feasible, 
-and would bias the model towards negative predictions. Accordingly, usually a balanced dataset is built by selecting all the positive interactions 
-and subsampling the same number (negative to positive ratio of 1) of negatives randomly. In the presented work, we showed that random subsampling can oversimplify the 
-prediction task, as it is likely that the model is not evaluated on hard-to-classify negative samples. Also, this subsampling methodology lacks of biological meaning.
-Hence, we proposed to weight negative interactions based on a structural-based metric (RMSD of the distance between atoms of two protein structures) to find hard-to-classify
-samples and increase accuracy and robustness of the drug repurposing model.
+Generally DTI networks are highly sparse, i.e., there is a high number of negative interactions compared to the positive ones. Hence, including all negative edges is not feasible, and would bias the model towards negative predictions. Accordingly, usually a balanced dataset is built by selecting all the positive interactions 
+and subsampling the same number (negative to positive ratio of 1) of negatives randomly. In the presented work, we showed that random subsampling can oversimplify the prediction task, as it is likely that the model is not evaluated on hard-to-classify negative samples. Also, this subsampling methodology lacks of biological meaning. Hence, we propose to rank negative interactions based on a structural-based metric (RMSD of the distance between atoms of two protein structures) to find hard-to-classify samples and increase accuracy and robustness of the drug repurposing model. 
 
-In this line, GraphGuest allows to use a matrix of distances/scores between every Protein as an alternative to random subsampling. If this matrix is provided, for each positive DTI,
-the negative DTI will be formed by the same drug and the protein that better maximizes (or minimizes) the distance/score with respect to the original protein from the positive DTI.
+In this line, GraphGuest allows to use a matrix of distances/scores between every Protein as an alternative to random subsampling. If this matrix is provided, for each positive DTI, the negative DTI will be formed by the same drug and the protein that better maximizes (or minimizes) the distance/score with respect to the original protein from the positive DTI.
 
 <p align="center" width="100%">
-    <img width="50%" src="https://raw.githubusercontent.com/ubioinformat/GraphGuest/aa9624ef53498a1e239d67f3a2952411187fee2e/imgs/RMSD.PNG">
+    <img width="80%" src="https://raw.githubusercontent.com/ubioinformat/GraphGuest/aa9624ef53498a1e239d67f3a2952411187fee2e/imgs/RMSD.PNG">
 </p>
 
 ## How to use it
@@ -42,7 +37,7 @@ Here now we describe the functionalities and parameters of the GraphGuest GUEST 
 - **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits (default: 5).
 - **negative_to_positive_ratio**: How many negatives DTI will be subsampled respect to the positives ones  (default: 1).
 
-After installing GraphGuest with pip (*pip install graphguest*), we will load the required packages:
+After installing GraphGuest with pip (*pip install graphguest*), the required packages can be imported:
 
     from graphguest import GUEST
     import pandas as pd
@@ -57,7 +52,7 @@ Load the GUEST object, specifying the DTI dataset, the mode you want the dataset
 
     ggnr = GUEST(DTIs, mode = "Sp", subsampling = True, n_seeds = 5)
 
-You can optionally pass a Protein column's score matrix as an argument. This matrix is computed by compute RMSD(atomic distances) between every pair of proteins in the NR dataset we're using. As a result, negative subsampling will shift from random selection to a rank-based approach. For each Drug-Target Interaction (DTI), we'll select negative DTIs using their rank and a predefined threshold. Here the discarded RMSD values are <=2.5, the held out are >2.5 & <=5 and >5 & <=6 to subsample negatives (see RMSD Figure for reference).
+You can optionally pass a Protein column's score matrix as an argument. This matrix is built by computing the Root Mean Square Devitation (RMSD) between every pair of proteins (atomic distances) in the evaluated dataset. As a result, negative subsampling will shift from random selection to a rank-based approach. For each Drug-Target Interaction (DTI), negative DTIs will be selected according to their rank and a predefined threshold. Here the discarded RMSD values are <=2.5 Å, the held out are >2.5 & <=5 Å and >5 & <=6 Å (see RMSD Figure).
 
     ggnr.apply_rank(RMSD_threshold = (2.5, 5, 6), fpath = 'tests/rmsd_nr.pkl') #(example matrix contains random values)
 
@@ -82,8 +77,9 @@ embedding dictionary can be passed as an argument to generate the node embedding
     seed_cv_list, final_fold, seed_cv_ne = ggnr.retrieve_results(node_emb) #(RMSD applied with node_emb dictionary)
 
 You can verify that your splits fulfill the mode requirements after they have been generated. Note that
-if any rank matrix is applied instead of random subsampling, split mode will be ignored due to 
-inconsistencies between the rank and the split constraints.
+if the *apply_rank* method has been called, the split mode will be ignored due to 
+inconsistencies between the rank and the split constraints (Sp, Sd or St constraints may not be possible 
+to be fulfilled if a rank-based constraint has been imposed as well.)
 
     ggnr.test_splits() 
     
