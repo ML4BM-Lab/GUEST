@@ -78,10 +78,10 @@ embedding dictionary can be passed as an argument to generate the node embedding
     # Passing a node embedding dictionary
     seed_cv_list, seed_cv_ne = ggnr.retrieve_results(node_emb) 
 
-    # When score/RMSD matrix is provided (*apply_rank* method called)
+    # When score/RMSD matrix is provided (apply_rank method called)
     seed_cv_list, final_fold = ggnr.retrieve_results() 
 
-    # If previous options (rmsd + node_emb dict) are combined
+    # If previous options (rank matrix + node_emb dict) are combined
     seed_cv_list, final_fold, seed_cv_ne = ggnr.retrieve_results(node_emb) 
 
 You can verify that your splits fulfill the mode requirements after they have been generated. Note that
