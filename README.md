@@ -14,7 +14,7 @@ GraphGuest allows to split any chosen network into train/test following several 
 
 
 <p align="center" width="100%">
-    <img width="50%" src="imgs/Splitting.PNG">
+    <img width="50%" src="https://raw.githubusercontent.com/ubioinformat/GraphGuest/aa9624ef53498a1e239d67f3a2952411187fee2e/imgs/Splitting.PNG">
 </p>
 
 ### GraphGuest subsampling functionality
@@ -30,7 +30,7 @@ In this line, GraphGuest allows to use a matrix of distances/scores between ever
 the negative DTI will be formed by the same drug and the protein that better maximizes (or minimizes) the distance/score with respect to the original protein from the positive DTI.
 
 <p align="center" width="100%">
-    <img width="50%" src="imgs/RMSD.PNG">
+    <img width="50%" src="https://raw.githubusercontent.com/ubioinformat/GraphGuest/aa9624ef53498a1e239d67f3a2952411187fee2e/imgs/RMSD.PNG">
 </p>
 
 ## How to use it
