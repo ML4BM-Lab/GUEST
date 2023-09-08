@@ -89,11 +89,12 @@ if the *apply_rank* method has been called, the split mode argument will be igno
 inconsistencies between the rank and the split constraints (Sp, Sd or St constraints may not be possible 
 to fulfill if a rank-based constraint has been imposed as well.)
 
+    # Default behavior
     ggnr.test_splits() 
     
-    #verbose can be set to True if more information is desired. (verbose's default: False)
+    # Verbose can be set to True if more information is desired. (verbose's default: False)
     ggnr.test_splits(verbose=True) 
 
-    #You can also visualize the final distribution of DTIs by setting distr to True (distr's default: False)
+    # You can also visualize the final distribution of DTIs by setting distr to True (distr's default: False)
     ggnr.test_splits(distr=True)
     
