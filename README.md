@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a package for evaluating Graph Embedding prediction methodologies. GraphGuest works on any kind of heterogeneous undirected graphs with exact 2 types of nodes and 1 type of edge. It was developed in the context of drug repurposing, as a part of the paper "Towards a more inductive world for drug repurposing approaches". From now on, we will refer to the nodes type 1 and 2 as Drugs and Proteins, respectively, hence the evaluated graph would be a Drug Target Interaction (DTI) network.
+This is a package for evaluating Graph Embedding prediction methodologies. GraphGuest works on any kind of heterogeneous undirected graphs with exact 2 types of nodes and 1 type of edge. It was developed in the context of drug repurposing, as a part of the paper "Towards a more inductive world for drug repurposing approaches". From now on, we will refer to the Type 1 and 2 nodes as Drugs and Proteins, respectively, hence the evaluated graph would be a Drug Target Interaction (DTI) network.
 
 ### GraphGuest splitting functionality
 
