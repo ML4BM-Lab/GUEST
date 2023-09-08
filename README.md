@@ -77,7 +77,7 @@ embedding dictionary can be passed as an argument to generate the node embedding
     seed_cv_list, final_fold, seed_cv_ne = ggnr.retrieve_results(node_emb) #(RMSD applied with node_emb dictionary)
 
 You can verify that your splits fulfill the mode requirements after they have been generated. Note that
-if the *apply_rank* method has been called, the split mode will be ignored due to 
+if the *apply_rank* method has been called, the split mode argument will be ignored due to 
 inconsistencies between the rank and the split constraints (Sp, Sd or St constraints may not be possible 
 to be fulfilled if a rank-based constraint has been imposed as well.)
 
