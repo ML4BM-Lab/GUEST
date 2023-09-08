@@ -42,7 +42,7 @@ Here now we describe the functionalities and parameters of the GraphGuest GUEST 
 - **n_seeds**: Number of times the dataset will be built, varying the seed, hence yielding different splits (default: 5).
 - **negative_to_positive_ratio**: How many negatives DTI will be subsampled respect to the positives ones  (default: 1).
 
-After installing GraphGuest with pip (pip install graphguest), we will load the required packages:
+After installing GraphGuest with pip (*pip install graphguest*), we will load the required packages:
 
     from graphguest import GUEST
     import pandas as pd
