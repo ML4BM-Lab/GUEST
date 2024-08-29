@@ -1,2 +1,4 @@
 venv/*
 dist/*
+tutorials/data/SplitsClassyfire_DrugBank/*
+tutorials/data/splits_chembl_drugbank/*
