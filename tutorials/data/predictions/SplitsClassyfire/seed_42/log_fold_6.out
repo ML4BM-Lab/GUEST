@@ -1,0 +1,934 @@
+--- Data Preparation ---
+nseed: 42
+fold:  6
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4148279130458832
+AUROC:0.4915041543599458
+AUPRC: 0.4876364133469491
+Confusion Matrix : 
+ [[  11 1323]
+ [   1 1335]]
+Recall :  0.999251497005988
+Precision :  0.5022573363431151
+Accuracy :  0.5041198501872659
+Sensitivity :  0.008245877061469266
+Specificity :  0.999251497005988
+Initial Testing AUROC: 0.4915041543599458 , AUPRC: 0.4876364133469491 , F1: 0.6333793103448275 , Test loss: 0.7099170088768005
+--- Go for Training ---
+Training at Epoch 1 iteration 0 with loss 0.6364879
+Training at Epoch 1 iteration 1000 with loss 0.5311374
+Training at Epoch 1 iteration 2000 with loss 0.5430485
+Training at Epoch 1 iteration 3000 with loss 0.62887794
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.39462387561798096
+AUROC:0.7778536358167464
+AUPRC: 0.8048063879776334
+Confusion Matrix : 
+ [[2617 1642]
+ [1011 3150]]
+Recall :  0.7570295602018745
+Precision :  0.6573455759599333
+Accuracy :  0.684916864608076
+Sensitivity :  0.6144634890819441
+Specificity :  0.7570295602018745
+Validation at Epoch 1 , AUROC: 0.7778536358167464 , AUPRC: 0.8048063879776334 , F1: 0.688457886884579
+Training at Epoch 2 iteration 0 with loss 0.67031604
+Training at Epoch 2 iteration 1000 with loss 0.42954946
+Training at Epoch 2 iteration 2000 with loss 0.39739472
+Training at Epoch 2 iteration 3000 with loss 0.5247142
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.6100584268569946
+AUROC:0.7701216753729466
+AUPRC: 0.7234810225996411
+Confusion Matrix : 
+ [[2697 1564]
+ [ 984 3175]]
+Recall :  0.7634046645828324
+Precision :  0.6699725680523317
+Accuracy :  0.6973871733966746
+Sensitivity :  0.6329500117343346
+Specificity :  0.7634046645828324
+Validation at Epoch 2 , AUROC: 0.7701216753729466 , AUPRC: 0.7234810225996411 , F1: 0.7113154320342703
+Training at Epoch 3 iteration 0 with loss 0.46194345
+Training at Epoch 3 iteration 1000 with loss 0.510364
+Training at Epoch 3 iteration 2000 with loss 0.373957
+Training at Epoch 3 iteration 3000 with loss 0.296827
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.2898617684841156
+AUROC:0.8637500115676764
+AUPRC: 0.8593284214031243
+Confusion Matrix : 
+ [[3303  955]
+ [ 838 3324]]
+Recall :  0.798654493032196
+Precision :  0.7768170133208694
+Accuracy :  0.7870546318289786
+Sensitivity :  0.7757162987317989
+Specificity :  0.798654493032196
+Validation at Epoch 3 , AUROC: 0.8637500115676764 , AUPRC: 0.8593284214031243 , F1: 0.7557127312295974
+Training at Epoch 4 iteration 0 with loss 0.55524296
+Training at Epoch 4 iteration 1000 with loss 0.3395043
+Training at Epoch 4 iteration 2000 with loss 0.5544351
+Training at Epoch 4 iteration 3000 with loss 0.44496274
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.2817295491695404
+AUROC:0.8705665643747181
+AUPRC: 0.8708821276835552
+Confusion Matrix : 
+ [[3324  937]
+ [ 770 3389]]
+Recall :  0.8148593411877856
+Precision :  0.7834026814609338
+Accuracy :  0.7972684085510688
+Sensitivity :  0.7800985684111711
+Specificity :  0.8148593411877856
+Validation at Epoch 4 , AUROC: 0.8705665643747181 , AUPRC: 0.8708821276835552 , F1: 0.7776183644189384
+Training at Epoch 5 iteration 0 with loss 0.30712414
+Training at Epoch 5 iteration 1000 with loss 0.48994237
+Training at Epoch 5 iteration 2000 with loss 0.5653359
+Training at Epoch 5 iteration 3000 with loss 0.5464767
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.26036760210990906
+AUROC:0.8719245440592273
+AUPRC: 0.8444798044320113
+Confusion Matrix : 
+ [[3233 1027]
+ [ 682 3478]]
+Recall :  0.8360576923076923
+Precision :  0.772031076581576
+Accuracy :  0.7970308788598575
+Sensitivity :  0.7589201877934272
+Specificity :  0.8360576923076923
+Validation at Epoch 5 , AUROC: 0.8719245440592273 , AUPRC: 0.8444798044320113 , F1: 0.7783839958430762
+Training at Epoch 6 iteration 0 with loss 0.3515781
+Training at Epoch 6 iteration 1000 with loss 0.63834614
+Training at Epoch 6 iteration 2000 with loss 0.2652236
+Training at Epoch 6 iteration 3000 with loss 0.2413141
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3689461052417755
+AUROC:0.884221475846936
+AUPRC: 0.882957191061475
+Confusion Matrix : 
+ [[3328  933]
+ [ 662 3497]]
+Recall :  0.8408271219043039
+Precision :  0.7893905191873589
+Accuracy :  0.8105700712589073
+Sensitivity :  0.781037315184229
+Specificity :  0.8408271219043039
+Validation at Epoch 6 , AUROC: 0.884221475846936 , AUPRC: 0.882957191061475 , F1: 0.8071560764959902
+Training at Epoch 7 iteration 0 with loss 0.32686293
+Training at Epoch 7 iteration 1000 with loss 0.23493922
+Training at Epoch 7 iteration 2000 with loss 0.6481209
+Training at Epoch 7 iteration 3000 with loss 0.3929873
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4538244903087616
+AUROC:0.8855199304803179
+AUPRC: 0.8885504576379079
+Confusion Matrix : 
+ [[3160 1100]
+ [ 580 3580]]
+Recall :  0.8605769230769231
+Precision :  0.7649572649572649
+Accuracy :  0.8004750593824228
+Sensitivity :  0.7417840375586855
+Specificity :  0.8605769230769231
+Validation at Epoch 7 , AUROC: 0.8855199304803179 , AUPRC: 0.8885504576379079 , F1: 0.807930029154519
+Training at Epoch 8 iteration 0 with loss 0.29912797
+Training at Epoch 8 iteration 1000 with loss 0.5203087
+Training at Epoch 8 iteration 2000 with loss 0.3477344
+Training at Epoch 8 iteration 3000 with loss 0.17950739
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.2789200246334076
+AUROC:0.8899544558843472
+AUPRC: 0.8914792099140509
+Confusion Matrix : 
+ [[3229 1032]
+ [ 584 3575]]
+Recall :  0.8595816301995672
+Precision :  0.7759930540481875
+Accuracy :  0.8080760095011876
+Sensitivity :  0.7578033325510444
+Specificity :  0.8595816301995672
+Validation at Epoch 8 , AUROC: 0.8899544558843472 , AUPRC: 0.8914792099140509 , F1: 0.8096834264432031
+Training at Epoch 9 iteration 0 with loss 0.40728846
+Training at Epoch 9 iteration 1000 with loss 0.58740014
+Training at Epoch 9 iteration 2000 with loss 0.31068593
+Training at Epoch 9 iteration 3000 with loss 0.35252023
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.32782450318336487
+AUROC:0.89118285030697
+AUPRC: 0.8913497885478429
+Confusion Matrix : 
+ [[3372  888]
+ [ 671 3489]]
+Recall :  0.838701923076923
+Precision :  0.7971213159698424
+Accuracy :  0.8148456057007126
+Sensitivity :  0.7915492957746478
+Specificity :  0.838701923076923
+Validation at Epoch 9 , AUROC: 0.89118285030697 , AUPRC: 0.8913497885478429 , F1: 0.7980017932624568
+Training at Epoch 10 iteration 0 with loss 0.2180903
+Training at Epoch 10 iteration 1000 with loss 0.4244806
+Training at Epoch 10 iteration 2000 with loss 0.19302873
+Training at Epoch 10 iteration 3000 with loss 0.13961008
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.2163815200328827
+AUROC:0.8925081055502132
+AUPRC: 0.8948372177524154
+Confusion Matrix : 
+ [[3234 1027]
+ [ 566 3593]]
+Recall :  0.8639095936523202
+Precision :  0.7777056277056277
+Accuracy :  0.8108076009501187
+Sensitivity :  0.7589767660173669
+Specificity :  0.8639095936523202
+Validation at Epoch 10 , AUROC: 0.8925081055502132 , AUPRC: 0.8948372177524154 , F1: 0.8118737474949901
+Training at Epoch 11 iteration 0 with loss 0.47141019
+Training at Epoch 11 iteration 1000 with loss 0.27661845
+Training at Epoch 11 iteration 2000 with loss 0.22997616
+Training at Epoch 11 iteration 3000 with loss 0.13076335
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.49283286929130554
+AUROC:0.8904932963163597
+AUPRC: 0.8932181202457643
+Confusion Matrix : 
+ [[3331  929]
+ [ 648 3512]]
+Recall :  0.8442307692307692
+Precision :  0.790812879981986
+Accuracy :  0.81270783847981
+Sensitivity :  0.781924882629108
+Specificity :  0.8442307692307692
+Validation at Epoch 11 , AUROC: 0.8904932963163597 , AUPRC: 0.8932181202457643 , F1: 0.8152123191787214
+Training at Epoch 12 iteration 0 with loss 0.48772055
+Training at Epoch 12 iteration 1000 with loss 0.3597431
+Training at Epoch 12 iteration 2000 with loss 0.29709956
+Training at Epoch 12 iteration 3000 with loss 0.61138564
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3860417604446411
+AUROC:0.8917393586247007
+AUPRC: 0.8919145251410133
+Confusion Matrix : 
+ [[3360  899]
+ [ 631 3530]]
+Recall :  0.8483537611151165
+Precision :  0.7970196432603296
+Accuracy :  0.8182897862232779
+Sensitivity :  0.788917586287861
+Specificity :  0.8483537611151165
+Validation at Epoch 12 , AUROC: 0.8917393586247007 , AUPRC: 0.8919145251410133 , F1: 0.8076204706761301
+Training at Epoch 13 iteration 0 with loss 0.16798075
+Training at Epoch 13 iteration 1000 with loss 0.16854255
+Training at Epoch 13 iteration 2000 with loss 0.7509101
+Training at Epoch 13 iteration 3000 with loss 0.10974751
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5747385621070862
+AUROC:0.8919556692128584
+AUPRC: 0.8921578090950583
+Confusion Matrix : 
+ [[3388  873]
+ [ 671 3488]]
+Recall :  0.8386631401779274
+Precision :  0.7998165558358175
+Accuracy :  0.8166270783847981
+Sensitivity :  0.7951185167800986
+Specificity :  0.8386631401779274
+Validation at Epoch 13 , AUROC: 0.8919556692128584 , AUPRC: 0.8921578090950583 , F1: 0.8152025489303595
+Training at Epoch 14 iteration 0 with loss 0.40302467
+Training at Epoch 14 iteration 1000 with loss 0.21234874
+Training at Epoch 14 iteration 2000 with loss 0.8118048
+Training at Epoch 14 iteration 3000 with loss 0.25316852
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5848550796508789
+AUROC:0.8882724753972553
+AUPRC: 0.888401971822009
+Confusion Matrix : 
+ [[3244 1016]
+ [ 594 3566]]
+Recall :  0.8572115384615384
+Precision :  0.7782627673505019
+Accuracy :  0.8087885985748219
+Sensitivity :  0.7615023474178404
+Specificity :  0.8572115384615384
+Validation at Epoch 14 , AUROC: 0.8882724753972553 , AUPRC: 0.888401971822009 , F1: 0.8108705258506408
+Training at Epoch 15 iteration 0 with loss 0.18896171
+Training at Epoch 15 iteration 1000 with loss 0.11442851
+Training at Epoch 15 iteration 2000 with loss 0.42933455
+Training at Epoch 15 iteration 3000 with loss 0.36434168
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.6119392514228821
+AUROC:0.8910171636591158
+AUPRC: 0.8933917423233293
+Confusion Matrix : 
+ [[3405  857]
+ [ 678 3480]]
+Recall :  0.836940836940837
+Precision :  0.8023979709476596
+Accuracy :  0.8176959619952494
+Sensitivity :  0.7989206945096199
+Specificity :  0.836940836940837
+Validation at Epoch 15 , AUROC: 0.8910171636591158 , AUPRC: 0.8933917423233293 , F1: 0.8126690712353472
+Training at Epoch 16 iteration 0 with loss 0.41687557
+Training at Epoch 16 iteration 1000 with loss 0.08957261
+Training at Epoch 16 iteration 2000 with loss 0.64679956
+Training at Epoch 16 iteration 3000 with loss 0.19906117
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3116917610168457
+AUROC:0.892642396849043
+AUPRC: 0.8933719406325863
+Confusion Matrix : 
+ [[3207 1053]
+ [ 542 3618]]
+Recall :  0.8697115384615385
+Precision :  0.7745664739884393
+Accuracy :  0.8105700712589073
+Sensitivity :  0.7528169014084507
+Specificity :  0.8697115384615385
+Validation at Epoch 16 , AUROC: 0.892642396849043 , AUPRC: 0.8933719406325863 , F1: 0.810129740518962
+Training at Epoch 17 iteration 0 with loss 0.48423606
+Training at Epoch 17 iteration 1000 with loss 0.07986122
+Training at Epoch 17 iteration 2000 with loss 0.37348542
+Training at Epoch 17 iteration 3000 with loss 0.1502835
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4587153196334839
+AUROC:0.8858481013572519
+AUPRC: 0.8866140895014165
+Confusion Matrix : 
+ [[3006 1256]
+ [ 490 3668]]
+Recall :  0.8821548821548821
+Precision :  0.7449228269699432
+Accuracy :  0.7926365795724466
+Sensitivity :  0.7053026748005631
+Specificity :  0.8821548821548821
+Validation at Epoch 17 , AUROC: 0.8858481013572519 , AUPRC: 0.8866140895014165 , F1: 0.8075505417178599
+Training at Epoch 18 iteration 0 with loss 0.37036246
+Training at Epoch 18 iteration 1000 with loss 0.27418104
+Training at Epoch 18 iteration 2000 with loss 0.12117275
+Training at Epoch 18 iteration 3000 with loss 0.29421428
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.6531931161880493
+AUROC:0.8891534906554713
+AUPRC: 0.8906551910144022
+Confusion Matrix : 
+ [[3510  750]
+ [ 755 3405]]
+Recall :  0.8185096153846154
+Precision :  0.8194945848375451
+Accuracy :  0.8212589073634204
+Sensitivity :  0.823943661971831
+Specificity :  0.8185096153846154
+Validation at Epoch 18 , AUROC: 0.8891534906554713 , AUPRC: 0.8906551910144022 , F1: 0.8086763070077865
+Training at Epoch 19 iteration 0 with loss 0.5640226
+Training at Epoch 19 iteration 1000 with loss 0.34098873
+Training at Epoch 19 iteration 2000 with loss 0.11509039
+Training at Epoch 19 iteration 3000 with loss 0.14743309
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5522744655609131
+AUROC:0.8926429047038642
+AUPRC: 0.8906200989004752
+Confusion Matrix : 
+ [[3282  978]
+ [ 601 3559]]
+Recall :  0.8555288461538462
+Precision :  0.7844390566453604
+Accuracy :  0.8124703087885986
+Sensitivity :  0.7704225352112676
+Specificity :  0.8555288461538462
+Validation at Epoch 19 , AUROC: 0.8926429047038642 , AUPRC: 0.8906200989004752 , F1: 0.817138311171724
+Training at Epoch 20 iteration 0 with loss 0.15423957
+Training at Epoch 20 iteration 1000 with loss 0.16724549
+Training at Epoch 20 iteration 2000 with loss 0.1245945
+Training at Epoch 20 iteration 3000 with loss 0.16484006
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.43543651700019836
+AUROC:0.8886331793941359
+AUPRC: 0.8891273981769608
+Confusion Matrix : 
+ [[3288  973]
+ [ 661 3498]]
+Recall :  0.8410675643183457
+Precision :  0.7823753075374636
+Accuracy :  0.805938242280285
+Sensitivity :  0.7716498474536494
+Specificity :  0.8410675643183457
+Validation at Epoch 20 , AUROC: 0.8886331793941359 , AUPRC: 0.8891273981769608 , F1: 0.8101534828807556
+Training at Epoch 21 iteration 0 with loss 0.31879884
+Training at Epoch 21 iteration 1000 with loss 0.2254674
+Training at Epoch 21 iteration 2000 with loss 0.14751892
+Training at Epoch 21 iteration 3000 with loss 0.1843303
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5139588117599487
+AUROC:0.8894158225458084
+AUPRC: 0.892996026518924
+Confusion Matrix : 
+ [[3365  897]
+ [ 666 3492]]
+Recall :  0.8398268398268398
+Precision :  0.7956254272043746
+Accuracy :  0.8143705463182898
+Sensitivity :  0.7895354293758798
+Specificity :  0.8398268398268398
+Validation at Epoch 21 , AUROC: 0.8894158225458084 , AUPRC: 0.892996026518924 , F1: 0.8157741220394353
+Training at Epoch 22 iteration 0 with loss 0.52466995
+Training at Epoch 22 iteration 1000 with loss 0.18813775
+Training at Epoch 22 iteration 2000 with loss 0.12504953
+Training at Epoch 22 iteration 3000 with loss 0.6579989
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3448357582092285
+AUROC:0.8912974844257856
+AUPRC: 0.8918818380008491
+Confusion Matrix : 
+ [[3439  821]
+ [ 675 3485]]
+Recall :  0.8377403846153846
+Precision :  0.809335810496981
+Accuracy :  0.8223277909738718
+Sensitivity :  0.8072769953051643
+Specificity :  0.8377403846153846
+Validation at Epoch 22 , AUROC: 0.8912974844257856 , AUPRC: 0.8918818380008491 , F1: 0.8194174757281553
+Training at Epoch 23 iteration 0 with loss 0.16982254
+Training at Epoch 23 iteration 1000 with loss 0.4153811
+Training at Epoch 23 iteration 2000 with loss 0.1800591
+Training at Epoch 23 iteration 3000 with loss 0.4418213
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5598430037498474
+AUROC:0.8901167446388142
+AUPRC: 0.8901021961623735
+Confusion Matrix : 
+ [[3483  778]
+ [ 758 3401]]
+Recall :  0.8177446501562876
+Precision :  0.8138310600622158
+Accuracy :  0.8175771971496437
+Sensitivity :  0.8174137526402253
+Specificity :  0.8177446501562876
+Validation at Epoch 23 , AUROC: 0.8901167446388142 , AUPRC: 0.8901021961623735 , F1: 0.8149624765478424
+Training at Epoch 24 iteration 0 with loss 0.14273925
+Training at Epoch 24 iteration 1000 with loss 0.21825162
+Training at Epoch 24 iteration 2000 with loss 0.116712034
+Training at Epoch 24 iteration 3000 with loss 0.9134658
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.37823179364204407
+AUROC:0.8917718247197937
+AUPRC: 0.8936603247987669
+Confusion Matrix : 
+ [[3347  914]
+ [ 630 3529]]
+Recall :  0.8485212791536427
+Precision :  0.7942831420211569
+Accuracy :  0.8166270783847981
+Sensitivity :  0.7854963623562544
+Specificity :  0.8485212791536427
+Validation at Epoch 24 , AUROC: 0.8917718247197937 , AUPRC: 0.8936603247987669 , F1: 0.8156114064765587
+Training at Epoch 25 iteration 0 with loss 0.10749984
+Training at Epoch 25 iteration 1000 with loss 0.22122395
+Training at Epoch 25 iteration 2000 with loss 0.7181707
+Training at Epoch 25 iteration 3000 with loss 0.036816772
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3722724914550781
+AUROC:0.8947878295413506
+AUPRC: 0.89664346104264
+Confusion Matrix : 
+ [[3528  732]
+ [ 728 3432]]
+Recall :  0.825
+Precision :  0.8242074927953891
+Accuracy :  0.8266033254156769
+Sensitivity :  0.828169014084507
+Specificity :  0.825
+Validation at Epoch 25 , AUROC: 0.8947878295413506 , AUPRC: 0.89664346104264 , F1: 0.817933432687531
+Training at Epoch 26 iteration 0 with loss 0.08636816
+Training at Epoch 26 iteration 1000 with loss 0.095757306
+Training at Epoch 26 iteration 2000 with loss 0.05035876
+Training at Epoch 26 iteration 3000 with loss 0.1371008
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5607376098632812
+AUROC:0.891709358220769
+AUPRC: 0.8930562885052443
+Confusion Matrix : 
+ [[3418  843]
+ [ 704 3455]]
+Recall :  0.8307285405145468
+Precision :  0.8038622615169846
+Accuracy :  0.816270783847981
+Sensitivity :  0.8021591175780334
+Specificity :  0.8307285405145468
+Validation at Epoch 26 , AUROC: 0.891709358220769 , AUPRC: 0.8930562885052443 , F1: 0.8153774246319233
+Training at Epoch 27 iteration 0 with loss 0.042845026
+Training at Epoch 27 iteration 1000 with loss 0.38128933
+Training at Epoch 27 iteration 2000 with loss 0.26412582
+Training at Epoch 27 iteration 3000 with loss 0.5145541
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3752898871898651
+AUROC:0.8898537307707435
+AUPRC: 0.8910621300535815
+Confusion Matrix : 
+ [[3404  857]
+ [ 685 3474]]
+Recall :  0.8352969463813417
+Precision :  0.8021242207342415
+Accuracy :  0.8168646080760095
+Sensitivity :  0.7988735038723305
+Specificity :  0.8352969463813417
+Validation at Epoch 27 , AUROC: 0.8898537307707435 , AUPRC: 0.8910621300535815 , F1: 0.8156114064765587
+Training at Epoch 28 iteration 0 with loss 0.4428546
+Training at Epoch 28 iteration 1000 with loss 0.13078368
+Training at Epoch 28 iteration 2000 with loss 0.083776735
+Training at Epoch 28 iteration 3000 with loss 0.059850138
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4509800672531128
+AUROC:0.8882094003447452
+AUPRC: 0.8850245868555946
+Confusion Matrix : 
+ [[3355  906]
+ [ 643 3516]]
+Recall :  0.8453955277710988
+Precision :  0.7951153324287653
+Accuracy :  0.8160332541567696
+Sensitivity :  0.7873738559023703
+Specificity :  0.8453955277710988
+Validation at Epoch 28 , AUROC: 0.8882094003447452 , AUPRC: 0.8850245868555946 , F1: 0.817967460504598
+Training at Epoch 29 iteration 0 with loss 0.42627802
+Training at Epoch 29 iteration 1000 with loss 0.85160446
+Training at Epoch 29 iteration 2000 with loss 0.43540427
+Training at Epoch 29 iteration 3000 with loss 0.051740088
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3703191876411438
+AUROC:0.890870875303773
+AUPRC: 0.890917980751003
+Confusion Matrix : 
+ [[3361  898]
+ [ 636 3525]]
+Recall :  0.8471521268925739
+Precision :  0.7969703820936016
+Accuracy :  0.8178147268408551
+Sensitivity :  0.7891523831885419
+Specificity :  0.8471521268925739
+Validation at Epoch 29 , AUROC: 0.890870875303773 , AUPRC: 0.890917980751003 , F1: 0.81578627808136
+Training at Epoch 30 iteration 0 with loss 0.13798845
+Training at Epoch 30 iteration 1000 with loss 0.27431497
+Training at Epoch 30 iteration 2000 with loss 0.11676973
+Training at Epoch 30 iteration 3000 with loss 0.108332
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5700975656509399
+AUROC:0.8863749900615067
+AUPRC: 0.8879436620803121
+Confusion Matrix : 
+ [[3314  947]
+ [ 646 3513]]
+Recall :  0.8446742005289734
+Precision :  0.7876681614349775
+Accuracy :  0.8108076009501187
+Sensitivity :  0.7777517014785261
+Specificity :  0.8446742005289734
+Validation at Epoch 30 , AUROC: 0.8863749900615067 , AUPRC: 0.8879436620803121 , F1: 0.8126570710532328
+Training at Epoch 31 iteration 0 with loss 0.38944483
+Training at Epoch 31 iteration 1000 with loss 0.069941156
+Training at Epoch 31 iteration 2000 with loss 0.1686787
+Training at Epoch 31 iteration 3000 with loss 0.08276608
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.48013874888420105
+AUROC:0.8919665831527627
+AUPRC: 0.8938884323167172
+Confusion Matrix : 
+ [[3333  927]
+ [ 605 3555]]
+Recall :  0.8545673076923077
+Precision :  0.7931726907630522
+Accuracy :  0.8180522565320665
+Sensitivity :  0.782394366197183
+Specificity :  0.8545673076923077
+Validation at Epoch 31 , AUROC: 0.8919665831527627 , AUPRC: 0.8938884323167172 , F1: 0.8210501804633833
+Training at Epoch 32 iteration 0 with loss 0.22947107
+Training at Epoch 32 iteration 1000 with loss 0.72314405
+Training at Epoch 32 iteration 2000 with loss 0.088881426
+Training at Epoch 32 iteration 3000 with loss 0.309105
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4760085940361023
+AUROC:0.887144868409173
+AUPRC: 0.8869302243594716
+Confusion Matrix : 
+ [[3305  955]
+ [ 643 3517]]
+Recall :  0.8454326923076924
+Precision :  0.7864490161001789
+Accuracy :  0.8102137767220903
+Sensitivity :  0.7758215962441315
+Specificity :  0.8454326923076924
+Validation at Epoch 32 , AUROC: 0.887144868409173 , AUPRC: 0.8869302243594716 , F1: 0.8134606427573359
+Training at Epoch 33 iteration 0 with loss 0.17454614
+Training at Epoch 33 iteration 1000 with loss 0.0708973
+Training at Epoch 33 iteration 2000 with loss 0.3104559
+Training at Epoch 33 iteration 3000 with loss 0.39978194
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5029112100601196
+AUROC:0.8830749480859515
+AUPRC: 0.882997139668509
+Confusion Matrix : 
+ [[3338  922]
+ [ 694 3466]]
+Recall :  0.833173076923077
+Precision :  0.7898814949863263
+Accuracy :  0.8080760095011876
+Sensitivity :  0.7835680751173709
+Specificity :  0.833173076923077
+Validation at Epoch 33 , AUROC: 0.8830749480859515 , AUPRC: 0.882997139668509 , F1: 0.8107096925055536
+Training at Epoch 34 iteration 0 with loss 0.21041012
+Training at Epoch 34 iteration 1000 with loss 0.109434985
+Training at Epoch 34 iteration 2000 with loss 0.14827114
+Training at Epoch 34 iteration 3000 with loss 0.13300245
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.41088730096817017
+AUROC:0.887098510749379
+AUPRC: 0.8848574490619353
+Confusion Matrix : 
+ [[3287  975]
+ [ 639 3519]]
+Recall :  0.8463203463203464
+Precision :  0.7830440587449933
+Accuracy :  0.808313539192399
+Sensitivity :  0.7712341623650868
+Specificity :  0.8463203463203464
+Validation at Epoch 34 , AUROC: 0.887098510749379 , AUPRC: 0.8848574490619353 , F1: 0.807769750088831
+Training at Epoch 35 iteration 0 with loss 0.06714547
+Training at Epoch 35 iteration 1000 with loss 0.022324739
+Training at Epoch 35 iteration 2000 with loss 0.04553923
+Training at Epoch 35 iteration 3000 with loss 0.18352126
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.37551000714302063
+AUROC:0.887730911127652
+AUPRC: 0.88681774104063
+Confusion Matrix : 
+ [[3406  853]
+ [ 661 3500]]
+Recall :  0.8411439557798606
+Precision :  0.8040431886055593
+Accuracy :  0.8201900237529691
+Sensitivity :  0.7997182437191829
+Specificity :  0.8411439557798606
+Validation at Epoch 35 , AUROC: 0.887730911127652 , AUPRC: 0.88681774104063 , F1: 0.8168642951251647
+Training at Epoch 36 iteration 0 with loss 0.0610762
+Training at Epoch 36 iteration 1000 with loss 0.19053513
+Training at Epoch 36 iteration 2000 with loss 0.60003775
+Training at Epoch 36 iteration 3000 with loss 0.109792285
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5513176321983337
+AUROC:0.8873213829146169
+AUPRC: 0.8853303817350132
+Confusion Matrix : 
+ [[3227 1034]
+ [ 574 3585]]
+Recall :  0.8619860543399855
+Precision :  0.7761420220827019
+Accuracy :  0.8090261282660333
+Sensitivity :  0.7573339591645154
+Specificity :  0.8619860543399855
+Validation at Epoch 36 , AUROC: 0.8873213829146169 , AUPRC: 0.8853303817350132 , F1: 0.8129480286738352
+Training at Epoch 37 iteration 0 with loss 0.31592584
+Training at Epoch 37 iteration 1000 with loss 0.073502004
+Training at Epoch 37 iteration 2000 with loss 0.028742343
+Training at Epoch 37 iteration 3000 with loss 0.32855928
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.44276028871536255
+AUROC:0.8878552513583016
+AUPRC: 0.8889026720938799
+Confusion Matrix : 
+ [[3344  918]
+ [ 655 3503]]
+Recall :  0.8424723424723425
+Precision :  0.7923546708889392
+Accuracy :  0.8131828978622327
+Sensitivity :  0.7846081651806663
+Specificity :  0.8424723424723425
+Validation at Epoch 37 , AUROC: 0.8878552513583016 , AUPRC: 0.8889026720938799 , F1: 0.814165580954637
+Training at Epoch 38 iteration 0 with loss 0.19325255
+Training at Epoch 38 iteration 1000 with loss 0.18022154
+Training at Epoch 38 iteration 2000 with loss 0.020441411
+Training at Epoch 38 iteration 3000 with loss 0.18606514
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.49669480323791504
+AUROC:0.8893683132448538
+AUPRC: 0.8886425288982261
+Confusion Matrix : 
+ [[3411  849]
+ [ 701 3459]]
+Recall :  0.8314903846153846
+Precision :  0.802924791086351
+Accuracy :  0.815914489311164
+Sensitivity :  0.8007042253521127
+Specificity :  0.8314903846153846
+Validation at Epoch 38 , AUROC: 0.8893683132448538 , AUPRC: 0.8886425288982261 , F1: 0.816881428064783
+Training at Epoch 39 iteration 0 with loss 0.025808765
+Training at Epoch 39 iteration 1000 with loss 0.19004841
+Training at Epoch 39 iteration 2000 with loss 0.102695085
+Training at Epoch 39 iteration 3000 with loss 0.18927167
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4865799844264984
+AUROC:0.8873703629698594
+AUPRC: 0.8865624276627838
+Confusion Matrix : 
+ [[3321  940]
+ [ 604 3555]]
+Recall :  0.8547727819187305
+Precision :  0.7908787541713015
+Accuracy :  0.8166270783847981
+Sensitivity :  0.7793945083313776
+Specificity :  0.8547727819187305
+Validation at Epoch 39 , AUROC: 0.8873703629698594 , AUPRC: 0.8865624276627838 , F1: 0.8210892236384705
+Training at Epoch 40 iteration 0 with loss 0.05272171
+Training at Epoch 40 iteration 1000 with loss 0.18510951
+Training at Epoch 40 iteration 2000 with loss 0.28414395
+Training at Epoch 40 iteration 3000 with loss 0.07373238
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.46681085228919983
+AUROC:0.8874483761404591
+AUPRC: 0.8850247828606543
+Confusion Matrix : 
+ [[3266  993]
+ [ 596 3565]]
+Recall :  0.8567652006729152
+Precision :  0.782141290039491
+Accuracy :  0.8112826603325416
+Sensitivity :  0.7668466776238554
+Specificity :  0.8567652006729152
+Validation at Epoch 40 , AUROC: 0.8874483761404591 , AUPRC: 0.8850247828606543 , F1: 0.8157162726008345
+Training at Epoch 41 iteration 0 with loss 0.11425072
+Training at Epoch 41 iteration 1000 with loss 0.04578926
+Training at Epoch 41 iteration 2000 with loss 0.121265315
+Training at Epoch 41 iteration 3000 with loss 0.3889977
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.39473164081573486
+AUROC:0.8771738767334867
+AUPRC: 0.8756911702863462
+Confusion Matrix : 
+ [[3304  954]
+ [ 682 3480]]
+Recall :  0.8361364728495916
+Precision :  0.7848443843031123
+Accuracy :  0.8057007125890736
+Sensitivity :  0.7759511507750118
+Specificity :  0.8361364728495916
+Validation at Epoch 41 , AUROC: 0.8771738767334867 , AUPRC: 0.8756911702863462 , F1: 0.8038254632396891
+Training at Epoch 42 iteration 0 with loss 0.19899647
+Training at Epoch 42 iteration 1000 with loss 0.22755523
+Training at Epoch 42 iteration 2000 with loss 0.053367253
+Training at Epoch 42 iteration 3000 with loss 0.59132
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4178936779499054
+AUROC:0.8859496310103339
+AUPRC: 0.8863338829256593
+Confusion Matrix : 
+ [[3223 1038]
+ [ 602 3557]]
+Recall :  0.8552536667468141
+Precision :  0.7741022850924918
+Accuracy :  0.8052256532066508
+Sensitivity :  0.7563952123914573
+Specificity :  0.8552536667468141
+Validation at Epoch 42 , AUROC: 0.8859496310103339 , AUPRC: 0.8863338829256593 , F1: 0.8106043065524428
+Training at Epoch 43 iteration 0 with loss 0.015212938
+Training at Epoch 43 iteration 1000 with loss 0.28661293
+Training at Epoch 43 iteration 2000 with loss 0.039438047
+Training at Epoch 43 iteration 3000 with loss 0.09041843
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.40409788489341736
+AUROC:0.8876156780426147
+AUPRC: 0.8841672845108731
+Confusion Matrix : 
+ [[3355  905]
+ [ 651 3509]]
+Recall :  0.8435096153846153
+Precision :  0.7949705482555505
+Accuracy :  0.8152019002375297
+Sensitivity :  0.7875586854460094
+Specificity :  0.8435096153846153
+Validation at Epoch 43 , AUROC: 0.8876156780426147 , AUPRC: 0.8841672845108731 , F1: 0.8156807179123864
+Training at Epoch 44 iteration 0 with loss 0.044080336
+Training at Epoch 44 iteration 1000 with loss 0.23009597
+Training at Epoch 44 iteration 2000 with loss 0.15134175
+Training at Epoch 44 iteration 3000 with loss 0.083202474
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.5582256317138672
+AUROC:0.8828020135316996
+AUPRC: 0.8714031880998553
+Confusion Matrix : 
+ [[3366  895]
+ [ 673 3486]]
+Recall :  0.8381822553498437
+Precision :  0.7957087422962794
+Accuracy :  0.8137767220902613
+Sensitivity :  0.7899554095282797
+Specificity :  0.8381822553498437
+Validation at Epoch 44 , AUROC: 0.8828020135316996 , AUPRC: 0.8714031880998553 , F1: 0.8139911975909195
+Training at Epoch 45 iteration 0 with loss 0.1601017
+Training at Epoch 45 iteration 1000 with loss 0.23349977
+Training at Epoch 45 iteration 2000 with loss 0.010684022
+Training at Epoch 45 iteration 3000 with loss 0.3374591
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.6080607771873474
+AUROC:0.8818512265669335
+AUPRC: 0.8766152089331462
+Confusion Matrix : 
+ [[3278  981]
+ [ 652 3509]]
+Recall :  0.8433068973804374
+Precision :  0.7815144766146993
+Accuracy :  0.8060570071258908
+Sensitivity :  0.7696642404320263
+Specificity :  0.8433068973804374
+Validation at Epoch 45 , AUROC: 0.8818512265669335 , AUPRC: 0.8766152089331462 , F1: 0.8085782366957903
+Training at Epoch 46 iteration 0 with loss 0.054555476
+Training at Epoch 46 iteration 1000 with loss 0.14608087
+Training at Epoch 46 iteration 2000 with loss 0.08836269
+Training at Epoch 46 iteration 3000 with loss 0.019001313
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.20772784948349
+AUROC:0.8823369502041487
+AUPRC: 0.8806506474128462
+Confusion Matrix : 
+ [[3239 1023]
+ [ 603 3555]]
+Recall :  0.854978354978355
+Precision :  0.7765399737876802
+Accuracy :  0.8068883610451306
+Sensitivity :  0.7599718442045987
+Specificity :  0.854978354978355
+Validation at Epoch 46 , AUROC: 0.8823369502041487 , AUPRC: 0.8806506474128462 , F1: 0.8101083032490974
+Training at Epoch 47 iteration 0 with loss 0.18809693
+Training at Epoch 47 iteration 1000 with loss 0.028252905
+Training at Epoch 47 iteration 2000 with loss 0.018770544
+Training at Epoch 47 iteration 3000 with loss 0.11132963
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.3933373689651489
+AUROC:0.8800420971350114
+AUPRC: 0.8752090416520272
+Confusion Matrix : 
+ [[3277  985]
+ [ 597 3561]]
+Recall :  0.8564213564213564
+Precision :  0.7833260008798945
+Accuracy :  0.8121140142517814
+Sensitivity :  0.7688878460816518
+Specificity :  0.8564213564213564
+Validation at Epoch 47 , AUROC: 0.8800420971350114 , AUPRC: 0.8752090416520272 , F1: 0.8144076716173547
+Training at Epoch 48 iteration 0 with loss 0.0824595
+Training at Epoch 48 iteration 1000 with loss 0.13930108
+Training at Epoch 48 iteration 2000 with loss 0.06884107
+Training at Epoch 48 iteration 3000 with loss 0.4594762
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4481385052204132
+AUROC:0.8822366759368167
+AUPRC: 0.8764579214401194
+Confusion Matrix : 
+ [[3338  924]
+ [ 643 3515]]
+Recall :  0.8453583453583453
+Precision :  0.7918450101374184
+Accuracy :  0.813895486935867
+Sensitivity :  0.7832003754106054
+Specificity :  0.8453583453583453
+Validation at Epoch 48 , AUROC: 0.8822366759368167 , AUPRC: 0.8764579214401194 , F1: 0.8163984494302832
+Training at Epoch 49 iteration 0 with loss 0.12699626
+Training at Epoch 49 iteration 1000 with loss 0.08284901
+Training at Epoch 49 iteration 2000 with loss 0.016719444
+Training at Epoch 49 iteration 3000 with loss 0.041995425
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4599565267562866
+AUROC:0.8794160177900205
+AUPRC: 0.8669776738681443
+Confusion Matrix : 
+ [[3259 1003]
+ [ 596 3562]]
+Recall :  0.8566618566618567
+Precision :  0.7802847754654983
+Accuracy :  0.8100950118764846
+Sensitivity :  0.7646644767714688
+Specificity :  0.8566618566618567
+Validation at Epoch 49 , AUROC: 0.8794160177900205 , AUPRC: 0.8669776738681443 , F1: 0.813840830449827
+Training at Epoch 50 iteration 0 with loss 0.095840424
+Training at Epoch 50 iteration 1000 with loss 0.42965624
+Training at Epoch 50 iteration 2000 with loss 0.039644577
+Training at Epoch 50 iteration 3000 with loss 0.035711106
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.4228858947753906
+AUROC:0.8802988392799053
+AUPRC: 0.8708605210723822
+Confusion Matrix : 
+ [[3255 1006]
+ [ 631 3528]]
+Recall :  0.8482808367396009
+Precision :  0.7781208645787384
+Accuracy :  0.8055819477434679
+Sensitivity :  0.7639051865759211
+Specificity :  0.8482808367396009
+Validation at Epoch 50 , AUROC: 0.8802988392799053 , AUPRC: 0.8708605210723822 , F1: 0.8104210281460805
+--- Go for Testing ---
+train_mod.py:82: RuntimeWarning: invalid value encountered in true_divide
+  precision = tpr / (tpr + fpr)
+optimal threshold: 0.007053004112094641
+AUROC:0.5452300047581
+AUPRC: 0.5542050476858252
+Confusion Matrix : 
+ [[  76 1260]
+ [  27 1307]]
+Recall :  0.97976011994003
+Precision :  0.5091546552395793
+Accuracy :  0.5179775280898876
+Sensitivity :  0.05688622754491018
+Specificity :  0.97976011994003
+Testing AUROC: 0.5452300047581 , AUPRC: 0.5542050476858252 , F1: 0.28070175438596495 , Test loss: 1.334135890007019
+20085.11847925186
